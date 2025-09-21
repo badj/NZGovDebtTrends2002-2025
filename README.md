@@ -44,7 +44,7 @@ Fully Enhanced Interactive Chart for New Zealand Government Debt with metrics-su
   - 2: Per Capita
   - 3: Population in millions
 
-Download the [TODO: filename with autodownload linking here] to open in your browser. The data table and all export options work directly in the browser.
+Download the [NZ_DEBT_CHART HTML File](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) to open in your browser. The data table and all export options work directly in the browser.
 
 ---
 ### Project information
