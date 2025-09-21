@@ -1,4 +1,4 @@
-# New Zealand Government Debt Trends (2002-2025) in a Graph
+# New Zealand Government Debt Trends (2002-2025) - Interactive Graph
 
 > New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) charting generated with historical static data from various (28) reputable sources - *refer to  data sources provided below table section*.
 >
@@ -25,7 +25,7 @@
 
 ### Overview
 
-> Fully Enhanced Interactive Graph for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:
+> Interactive Graph for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:
 
 - **Scale Toggle Dropdown:**
   - A dropdown to switch between "Linear Scale" (default) and "Log Scale" for the right y-axis (Debt Amount, Per Capita, Population).
