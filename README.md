@@ -1,4 +1,4 @@
-# New Zealand Government Debt Trends (2002-2025)
+# New Zealand Government Debt Trends (2002-2025) in a Graph
 
 > New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) charting generated with historical static data from various (28) reputable sources - *refer to  data sources provided below table section*.
 >
@@ -25,20 +25,20 @@
 
 ### Overview
 
-> Fully Enhanced Interactive Chart for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:
+> Fully Enhanced Interactive Graph for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:
 
 - **Scale Toggle Dropdown:**
   - A dropdown to switch between "Linear Scale" (default) and "Log Scale" for the right y-axis (Debt Amount, Per Capita, Population).
   - This affects only the secondary y-axis to handle the wide range of values (e.g., Debt Amount: 35–185B NZD, Per Capita: 8900–34300 NZD, Population: 3.9–5.4M).
 
-- **Data Table chart views and dropdowns:**
+- **Data Table graph views and dropdowns:**
   - The table is interactive and syncs with the chart’s filters (e.g., PM or Party filters adjust the table rows).
   - **Metrics Dropdown:** Toggle "All Metrics", "% GDP Only", "Amount Only", "Per Capita Only", "Population Only".
   - **Party Filter Dropdown:** Filter by "All Parties", "Labour Only", "National Only" (applies to debt metrics, not population).
   - **PM Filter Dropdown:** Filter by "All PMs", "Helen Clark", "John Key", "Bill English", "Jacinda Ardern", "Christopher Luxon".
   - **Population Colour Toggle Dropdown:** Options for "Green (Default)", "Orange", "Purple", "Hide Population".
 
-- **Export Options:** "Export PNG" and "Export CSV" for downloading the chart image or data.
+- **Export Options:** "Export PNG" and "Export CSV" for downloading the graph image or data.
   - Buttons for the "Export Options" to toggle between a data table export (below the chart), exporting all columns (Year, Debt % GDP, Debt Amount, Per Capita, Prime Minister, Ruling Political Party, Population Count).
   - PNG: Downloads a high-resolution image (1200x750) via the "Export PNG" option.
   - CSV: Downloads a file (nz_government_debt_data.csv) with all table data.
