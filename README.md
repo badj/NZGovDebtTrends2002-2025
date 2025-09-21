@@ -43,8 +43,21 @@
   - CSV: Downloads a file (nz_government_debt_data.csv) with all table data.
 
 - **Range Slider:** Zoom into specific year ranges (2002–2025).
-- **Full hover tooltips:** All columns (Year, Debt % GDP, Amount, Per Capita, PM, Party, Population, Population in millions).
-- **Party-based colouring:** (blue=Labour, red=National) for debt metrics, population in a separate colour.
+
+- **Full hover tooltips:** All columns
+  - Year
+  - Debt % GDP
+  - Amount
+  - Per Capita
+  - PM
+  - Party
+  - Population in millions
+
+- **Party-based colouring:**
+  - blue=Labour
+  - red=National
+  - for debt metrics, population in a separate colour.
+
 - **PM change annotations:** Indicating PM change over.
 
 - **The chart has 4 traces:** 
