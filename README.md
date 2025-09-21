@@ -24,7 +24,7 @@
 
 ### Overview
 
-Fully Enhanced Interactive Chart for New Zealand Government Debt with metrics-supported features:
+> Fully Enhanced Interactive Chart for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:
 
 - **Scale Toggle Dropdown:**
   - A dropdown to switch between "Linear Scale" (default) and "Log Scale" for the right y-axis (Debt Amount, Per Capita, Population).
