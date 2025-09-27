@@ -13,7 +13,7 @@
 
 ![chart-demo.gif](Images/chart-demo.gif)
 
-> - Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework:
+> - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
 >   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
@@ -95,12 +95,12 @@
 
 ### Playwright Automated Testing
 
-> - Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework:
+> - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
 >   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
 > - Playwright Key Test Coverage *(25 Tests)*:
->   - Visualization loads and displays correctly.
+>   - Visualisation loads and displays correctly.
 >   - All dropdowns contain expected filter options.
 >   - Selecting filters updates the graph as expected.
 >   - Export buttons (PNG, CSV) trigger downloads.
@@ -160,7 +160,7 @@
    ```bash
    npx playwright show-report
    ```
-- A hyperlink to the webserver will be printed to the terminal that links through to the generated report - sample output:
+- A hyperlink to the web server will be printed to the terminal that links through to the generated report - sample output:
 
   ```
   Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.
@@ -172,19 +172,19 @@
 - **GitHub Actions/Workflows:**
   - Automatically [publishes the GitHub Page](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
   - Automatically [runs Playwright tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
-- **Test Reports:** HTML reports are generated for each run and uploaded as workflow artifacts.
+- **Test Reports:** HTML reports are generated for each run and uploaded as workflow artefacts.
 - **Trace & Video:** Retained on failure for debugging.
 
 ---
 ### Playwright MCP integration to generate and fix failing tests
 
 > - Usage of [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) to explore your site, write your Tests, and iterate until all tests pass.
-> - Playwright MCP in Agent Mode can autonomously navigate your app, discover key functionality, and generate runnable tests — no manual scripting required.
+> - Playwright MCP in Agent Mode can autonomously navigate your app, discover key functionality, and generate runnable tests — *in some cases, no manual scripting required.*
 > - [GitHub Copilot](https://github.com/features/copilot) was set to use [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents in Agent mode.
 
 **Configurations to enable Playwright MCP:**
 
-1. Configure MCP Playwright server to run locally inside your [IDE project folder](.idea/mcp.json) in a file called ```mcp.json``` *([IntelliJ IDEA / Webstorm](https://www.jetbrains.com/webstorm/) was used for this project)*
+1. Configure the MCP Playwright server to run locally inside your [IDE project folder](.idea/mcp.json) in a file called ```mcp.json``` *([IntelliJ IDEA / Webstorm](https://www.jetbrains.com/webstorm/) was used for this project)*
 
    ```JSON
    {
@@ -199,7 +199,7 @@
 
 2. In my project IDE folder [I added a file](.idea/settings.json) called ```settings.json```
 
-- By adding this code I didn’t have to click continue each time, allowing the agent to continue on its own.
+- By adding this code, I didn’t have to click continue each time, allowing the agent to continue on its own.
 
   ```JSON
   {
@@ -217,7 +217,7 @@
 - Agent mode uses the Playwright MCP to navigate to the site and use the browser to explore the app like a real user.
 - Let the agent freely navigate, discover functionality, and generate tests automatically based on its interactions.
 - This generated the bulk of the test for me to then tweak to my preferences.
-- After wrapping up the interactions, the agent summarises its findings for me to then continue to tweak the tests for my preferences.
+- After wrapping up the interactions, the agent summarises its findings to continue updating and fixing the tests as per your preferences.
 
    ```bash
    Explore https://badj.github.io/NZGovernmentsDebtTrends2002-2025/
@@ -225,7 +225,7 @@
 
 5. Test Generation & Execution: The agent generates a full Playwright test file based on the interactions, and it fixes errors automatically before running each iteration of the tests.
 
-- Once generated, it opens a terminal and runs the tests, when it passes, I inspected the steps taken to confirm accuracy and false positives. 
+- Once generated, it opens a terminal and runs the tests. When it passes, you can / should inspect the steps taken to confirm accuracy and false positives. 
 - It’s a full cycle: exploration → generation → execution → review. 
 - I iterated and refined the prompt to increase the test count and prompted the agent to explore additional areas.
 
@@ -236,12 +236,12 @@
 
 ---
 
-### TODO's:
+### TODOs:
 
 1. Decrease the test count after checking for duplicated coverage. 
-2. Fix 3 failing tests that are failing for Webkit and Firefox runs:
+2. Fix 3 failing tests that are failing for WebKit and Firefox runs:
 - All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
-- Visualization changes are handled - Failing for Webkit runs!
+- Visualisation changes are handled - Failing for WebKit runs!
 - Download options downloading as expected - Failing for Webkit runs!
 
 ---
