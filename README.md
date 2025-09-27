@@ -164,9 +164,9 @@
 ---
 ### CICD Integration
 
-> - **GitHub Actions/Workflows:** 
->  - Automatically publishes the GitHub Page on every commit.
->  - Automatically runs Playwright tests on every commit and scheduled intervals.
+> - **GitHub Actions/Workflows:**
+>   - Automatically publishes the GitHub Page on every commit.
+>   - Automatically runs Playwright tests on every commit and scheduled intervals.
 > - **Test Reports:** HTML reports are generated for each run and uploaded as workflow artifacts.
 > - **Trace & Video:** Retained on failure for debugging.
 
