@@ -143,15 +143,19 @@
 
 **Test run with Playwright HTML report generation**
 
-1. Execute the test
+1. Execute the test (headless)
    ```bash
    npx playwright test
    ```
-2. OR Execute the test with the UI
+2. OR Execute the test (headed / browser opens)
+   ```bash
+   npx playwright test --headed
+   ``` 
+3. OR Execute the test with the UI
    ```bash
    npx playwright test --ui
    ``` 
-3. View the HTML report when test execution completes - Command will print to the terminal
+4. View the HTML report when test execution completes - Command will print to the terminal
    ```bash
    npx playwright show-report
    ```
