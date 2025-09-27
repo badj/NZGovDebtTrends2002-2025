@@ -13,9 +13,9 @@
 
 ![chart-demo.gif](Images/chart-demo.gif)
 
-> **Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework**.
-> - The end-to-end tests verify the dashboard’s features, including dropdown filters, chart rendering, export options, and interactive controls.
-> - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used to [generate tests](.github/1-generate-tests.prompt.md) and to [fix failing tests](.github/2-fix-failing-tests.prompt.md) using [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts.
+> - Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework:
+>   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
+>   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used to [generate tests](.github/1-generate-tests.prompt.md) and to [fix failing tests](.github/2-fix-failing-tests.prompt.md) using [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts.
 >
 > [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
 
@@ -95,18 +95,19 @@
 
 ### Playwright Automated Testing
 
-> [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
+> - Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework:
+>   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
+>   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used to [generate tests](.github/1-generate-tests.prompt.md) and to [fix failing tests](.github/2-fix-failing-tests.prompt.md) using [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts.
 >
-> **Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework**.
-> - The end-to-end tests verify the dashboard’s features, including dropdown filters, chart rendering, export options, and interactive controls.
-> - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used to [generate tests](.github/1-generate-tests.prompt.md) and to [fix failing tests](.github/2-fix-failing-tests.prompt.md) using [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts.
-
-- Playwright Key Test Coverage *(25 Tests)*:
-  - Visualization loads and displays correctly
-  - All dropdowns contain expected filter options
-  - Selecting filters updates the graph as expected
-  - Export buttons (PNG, CSV) trigger downloads
-  - Modebar and chart controls are present and functional
+> - Playwright Key Test Coverage *(25 Tests)*:
+>   - Visualization loads and displays correctly
+>   - All dropdowns contain expected filter options
+>   - Selecting filters updates the graph as expected
+>   - Export buttons (PNG, CSV) trigger downloads
+>   - Mode bar and chart controls are present and functional
+>   - Table Data and Data Sources are present and functional
+> 
+> [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
 
 ---
 
@@ -119,11 +120,11 @@
 ### Setup
 
 1. Clone or Download
-    - Clone this repository: `git clone https://github.com/badj/playwright-poc.git`
+    - Clone this repository: `git clone https://github.com/badj/NZGovernmentsDebtTrends2002-2025.git`
     - Alternatively, download the ZIP file and extract it.
 2. Navigate to Project Directory:
    ```bash
-   cd playwright-poc
+   cd NZGovernmentsDebtTrends2002-2025
    ```
 3. Initialise a Node.js project
    ```bash
