@@ -1,4 +1,4 @@
-# New Zealand Government Debt Trends (2002-2025) - Interactive Graph
+he# New Zealand Government Debt Trends (2002-2025) - Interactive Graph
 
 > New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) charting generated with historical static data from various (28) reputable sources - *refer to data sources provided below table section*.
 >
@@ -178,7 +178,7 @@
 ---
 ### Playwright MCP integration to generate and fix failing tests
 
-> - Usage of [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) to explore your site, write your Tests, and iterate until all tests pass.
+> - Usage of [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) to generate a Playwright project that explores your site, write your Tests, and iterate until all tests pass.
 > - Playwright MCP in Agent Mode can autonomously navigate your app, discover key functionality, and generate runnable tests — *in some cases, no manual scripting required.*
 > - [GitHub Copilot](https://github.com/features/copilot) was set to use [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents in Agent mode.
 
