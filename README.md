@@ -15,7 +15,7 @@
 
 > - Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
->   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
+>   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
 > [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
 
@@ -96,7 +96,7 @@
 
 > - Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
->   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
+>   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
 > - Playwright Key Test Coverage *(25 Tests)*:
 >   - Visualization loads and displays correctly.
@@ -168,11 +168,11 @@
 ---
 ### CICD Integration
 
-> - **GitHub Actions/Workflows:**
->   - Automatically publishes the GitHub Page on every commit.
->   - Automatically runs Playwright tests on every commit and scheduled intervals.
-> - **Test Reports:** HTML reports are generated for each run and uploaded as workflow artifacts.
-> - **Trace & Video:** Retained on failure for debugging.
+- **GitHub Actions/Workflows:**
+  - Automatically [publishes the GitHub Page](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
+  - Automatically [runs Playwright tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
+- **Test Reports:** HTML reports are generated for each run and uploaded as workflow artifacts.
+- **Trace & Video:** Retained on failure for debugging.
 
 ---
 
