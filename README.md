@@ -81,15 +81,14 @@
 
 ### Project information
 
-→ 🚀 View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovernmentsDebtTrends2002-2025/) or
-
-→ 🚀 As a standalone HTML file in your browser locally:
-
-- Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
-- Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
-- [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE → download the latest plotly.js from CDN.
-
-→ 🚀 The data table and all export options work directly in the browser.
+> [![pages-build-deployment](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
+> 
+> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovernmentsDebtTrends2002-2025/) or 
+> - As a standalone HTML file in your browser locally:
+>   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser. 
+>   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE → download the latest plotly.js from CDN. 
+> - The data table and all export options work directly in the browser.
 
 ---
 
@@ -100,12 +99,12 @@
 >   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used to [generate tests](.github/1-generate-tests.prompt.md) and to [fix failing tests](.github/2-fix-failing-tests.prompt.md) using [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts.
 >
 > - Playwright Key Test Coverage *(25 Tests)*:
->   - Visualization loads and displays correctly
->   - All dropdowns contain expected filter options
->   - Selecting filters updates the graph as expected
->   - Export buttons (PNG, CSV) trigger downloads
->   - Mode bar and chart controls are present and functional
->   - Table Data and Data Sources are present and functional
+>   - Visualization loads and displays correctly.
+>   - All dropdowns contain expected filter options.
+>   - Selecting filters updates the graph as expected.
+>   - Export buttons (PNG, CSV) trigger downloads.
+>   - Mode bar and chart controls are present and functional.
+>   - Table Data and Data Sources are present and functional.
 > 
 > [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
 
@@ -165,16 +164,18 @@
 ---
 ### CICD Integration
 
-- **GitHub Actions:** Automatically runs Playwright tests on every commit and/or scheduled intervals.
-- **Test Reports:** HTML reports are generated for each run and uploaded as workflow artifacts.
-- **Trace & Video:** Retained on failure for debugging.
+> - **GitHub Actions/Workflows:** 
+>  - Automatically publishes the GitHub Page on every commit.
+>  - Automatically runs Playwright tests on every commit and scheduled intervals.
+> - **Test Reports:** HTML reports are generated for each run and uploaded as workflow artifacts.
+> - **Trace & Video:** Retained on failure for debugging.
 
 ---
 
 ### TODO's:
 
 1. Decrease test count after checking for duplicated coverage. 
-2. Fix the 3 failing test that fail on Webkit and Firefox runs:
+2. Fix 3 failing test that are failing for Webkit and Firefox runs:
 - All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
 - Visualization changes are handled - Failing for Webkit runs!
 - Download options downloading as expected - Failing for Webkit runs!
