@@ -1,0 +1,57 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '30 19 * * *'  # 7:30 am NZT (UTC+12)
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install npm dependencies
+        run: npx playwright install --with-deps
+#        run: npm ci
+
+#      Enable this step when switching to use "Run Playwright tests - CI: true" instead of "Run Playwright tests in Docker" step - runtime performance is slower than using docker runner!
+#      - name: Install Playwright browsers
+#        run: npx playwright install --with-deps
+
+#        Enable this step when switching to use "Run Playwright tests - CI: true" instead of "Run Playwright tests in Docker" step - runtime performance is slower than using docker runner!
+#        - name: Run Playwright tests
+#          run: npx playwright test
+#          env:
+#          CI: true
+
+      - name: Run Playwright tests in Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/work \
+            -w /work \
+            mcr.microsoft.com/playwright:v1.53.2-jammy \
+            npx playwright test --workers=12
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 30
