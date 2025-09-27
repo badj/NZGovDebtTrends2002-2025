@@ -27,8 +27,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install npm dependencies
-        run: npx playwright install --with-deps
-#        run: npm ci
+#        run: npx playwright install --with-deps
+        run: npm ci
 
 #      Enable this step when switching to use "Run Playwright tests - CI: true" instead of "Run Playwright tests in Docker" step - runtime performance is slower than using docker runner!
 #      - name: Install Playwright browsers
