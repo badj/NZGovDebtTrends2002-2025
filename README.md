@@ -17,7 +17,7 @@
 > - The end-to-end tests verify the dashboard’s features, including dropdown filters, chart rendering, export options, and interactive controls.
 > - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used to [generate tests](.github/1-generate-tests.prompt.md) and to [fix failing tests](.github/2-fix-failing-tests.prompt.md) using [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts.
 >
-> [![pages-build-deployment](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
+> [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
 
 ---
 ### Table of contents
@@ -95,6 +95,8 @@
 
 ### Playwright Automated Testing
 
+> [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
+>
 > **Automated end-to-end testing has been integrated for the interactive visualization using [Playwright](https://playwright.dev/) as the test framework**.
 > - The end-to-end tests verify the dashboard’s features, including dropdown filters, chart rendering, export options, and interactive controls.
 > - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used to [generate tests](.github/1-generate-tests.prompt.md) and to [fix failing tests](.github/2-fix-failing-tests.prompt.md) using [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts.
@@ -170,7 +172,8 @@
 
 ### TODO's:
 
-1. Decrease test count after checking for duplicated coverage 
+1. Resolve ["Run Playwright tests in Docker"](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml) issue(s).
+2. Decrease test count after checking for duplicated coverage. 
 2. Fix 3 failing test that fail on Webkit and Firefox:
 - All Dropdowns contain expected graph data filter options - Failing for Firefox runs only!
 - Visualization changes are handled - Failing for Webkit runs only!
