@@ -239,9 +239,10 @@ he# New Zealand Government Debt Trends (2002-2025) - Interactive Graph
 ### TODOs:
 
 1. Decrease the test count after checking for duplicated coverage. 
-2. Fix 3 failing tests that are failing for WebKit and Firefox runs:
-- All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
-- Visualisation changes are handled - Failing for WebKit runs!
-- Download options downloading as expected - Failing for Webkit runs!
+2. Enable WebKit and Firefox cross browser runners:
+- Fix 3 failing tests that are failing for WebKit and Firefox runs:
+  - All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
+  - Visualisation changes are handled - Failing for WebKit runs!
+  - Download options downloading as expected - Failing for Webkit runs!
 
 ---
