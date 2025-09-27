@@ -172,11 +172,10 @@
 
 ### TODO's:
 
-1. Resolve ["Run Playwright tests in Docker"](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml) issue(s).
-2. Decrease test count after checking for duplicated coverage. 
-2. Fix 3 failing test that fail on Webkit and Firefox:
-- All Dropdowns contain expected graph data filter options - Failing for Firefox runs only!
-- Visualization changes are handled - Failing for Webkit runs only!
-- Download options downloading as expected - Failing for Webkit runs only!
+1. Decrease test count after checking for duplicated coverage. 
+2. Fix the 3 failing test that fail on Webkit and Firefox runs:
+- All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
+- Visualization changes are handled - Failing for Webkit runs!
+- Download options downloading as expected - Failing for Webkit runs!
 
 ---
