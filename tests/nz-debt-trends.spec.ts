@@ -4,11 +4,11 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
 
         test.beforeEach(async ({ page }) => {
             await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
-            // Wait for the visualization to be fully loaded
+            // Wait for the visualisation to be fully loaded
             await expect(page.locator('.js-plotly-plot')).toBeVisible();
         });
 
-    test('Basic visualization elements displayed', async ({ page }) => {
+    test('Basic visualisation elements displayed', async ({ page }) => {
         // Verify main plot container
         const plotContainer = page.locator('.js-plotly-plot');
         await expect(plotContainer).toBeVisible();
@@ -63,17 +63,17 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         }
     });
 
-    test('Visualizations loaded and displayed', async ({ page }) => {
+    test('Visualisations loaded and displayed', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Verify the page title
         await expect(page).toHaveTitle('NZ Government Debt Interactive Chart with Table and References');
 
-        // Check if the main visualization element is present
+        // Check if the main visualisation element is present
         await expect(page.locator('.js-plotly-plot')).toBeVisible();
     });
 
-    test('Visualization components displayed', async ({ page }) => {
+    test('Visualisation components displayed', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for and verify the Plotly graph container
@@ -130,7 +130,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         await expect(page.locator('a[data-title*="Reset"]').first()).toBeVisible();
     });
 
-    test('Export PNG button downloads visualization image', async ({ page }) => {
+    test('Export PNG button downloads visualisation image', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot to be visible
@@ -352,7 +352,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Visualization changes are handled', async ({ page }) => {
+    test('Visualisation changes are handled', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot to be visible
@@ -421,7 +421,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         }
     });
 
-    test('Download polt as png options downloading as expected', async ({ page }) => {
+    test('Download plot as PNG options downloading as expected', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot
@@ -534,7 +534,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         ]);
     });
 
-    test('All Metrics selections update visualization when filter options are changed', async ({ page }) => {
+    test('All Metrics selections update visualisation when filter options are changed', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot to be visible
@@ -557,7 +557,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All Political Party selections update visualization when filter options are changed', async ({ page }) => {
+    test('All Political Party selections update visualisation when filter options are changed', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot to be visible
@@ -576,7 +576,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All PM selections update visualization when filter options are changed', async ({ page }) => {
+    test('All PM selections update visualisation when filter options are changed', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot to be visible
@@ -598,7 +598,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All colour selections update visualization when filter options are changed', async ({ page }) => {
+    test('All colour selections update visualisation when filter options are changed', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot to be visible
@@ -618,7 +618,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All scale selections update visualization when filter options are changed', async ({ page }) => {
+    test('All scale selections update visualisation when filter options are changed', async ({ page }) => {
         await page.goto('https://badj.github.io/NZGovernmentsDebtTrends2002-2025/');
 
         // Wait for plot to be visible
@@ -663,7 +663,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality', 
             const filterOption = dropdownMenu.getByText(option, { exact: true }).first();
             await filterOption.click();
 
-            // Verify the visualization updates
+            // Verify the visualisation updates
             await expect(plotContainer).toBeVisible();
             await expect(page.locator('.plot-container')).toBeVisible();
             await expect(page.locator('.scatterlayer').first()).toBeVisible();
