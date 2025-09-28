@@ -242,11 +242,6 @@
 ### TODOs:
 
 1. Decrease the test count after checking for duplicated coverage. 
-2. Enable WebKit and Firefox cross-browser runners:
-- Fix 3 failing tests that are failing for WebKit and Firefox runs:
-  - All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
-  - Visualisation changes are handled - Failing for WebKit runs!
-  - Download options downloading as expected - Failing for WebKit runs!
-  - [Issue reported to resolve the 3 failing tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/1)
+2. [Enable WebKit and Firefox cross-browser runners](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/1)
 
 ---
