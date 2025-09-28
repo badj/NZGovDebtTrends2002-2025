@@ -241,7 +241,7 @@
 
 ### TODOs:
 
-1. Decrease the test count after checking for duplicated coverage. 
+1. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/2)
 2. [Enable WebKit and Firefox cross-browser runners](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/1)
 
 ---
