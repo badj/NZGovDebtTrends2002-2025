@@ -215,13 +215,14 @@
 4. In the IDE, use Agent Mode, add the prompt to the context to create the initial tests and iterate until all tests pass.
 
 - Agent mode uses the Playwright MCP to navigate to the site and use the browser to explore the app like a real user.
-- Prompts the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
-- This generated the bulk of the test, allowing me to tweak it further to my preferences.
-- After wrapping up the interactions, the agent summarises its findings to continue updating and fixing the tests as per your preferences.
+- Prompts prompt/instruct the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
 
    ```bash
    Explore https://badj.github.io/NZGovernmentsDebtTrends2002-2025/
    ```
+
+- This generated the bulk of the test, allowing me to tweak it further to my preferences.
+- After wrapping up the interactions, the agent summarises its findings to continue updating and fixing the tests as per your preferences.
 
 5. Test Generation & Execution:
   
