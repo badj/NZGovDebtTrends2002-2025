@@ -15,7 +15,7 @@
 
 > - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
->   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
+>   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
 > [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
 
@@ -28,9 +28,9 @@
   - [Pre requisites](#pre-requisites)
   - [Setup](#setup)
   - [Run tests and generate the test run report to view test results](#run-tests-and-generate-the-test-run-report-to-view-the-test-results)
-- [CICD Integration](#cicd-integration)
-- [Playwright MCP integration to generate and fix failing tests](#playwright-mcp-integration-to-generate-and-fix-failing-tests)
-- [TODO's](#todos)
+  - [CICD Integration](#cicd-integration)
+  - [Playwright MCP integration with Claude Sonnet and Chat-GPT agents](#playwright-mcp-integration-with-claude-sonnet-and-chat-gpt-agents)
+- [TODOs](#todos)
 
 ---
 
@@ -97,7 +97,7 @@
 
 > - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
->   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
+>   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
 > - Playwright Key Test Coverage *(25 Tests)*:
 >   - Visualisation loads and displays correctly.
@@ -176,11 +176,11 @@
 - **Trace & Video:** Retained on failure for debugging.
 
 ---
-### Playwright MCP integration to generate and fix failing tests
+### Playwright MCP integration with Claude Sonnet and Chat-GPT agents
 
 > - Usage of [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) to generate a Playwright project that explores your site, write your Tests, and iterate until all tests pass.
 > - Playwright MCP in Agent Mode can autonomously navigate your app, discover key functionality, and generate runnable tests — *in some cases, no manual scripting required.*
-> - [GitHub Copilot](https://github.com/features/copilot) was set to use [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents in Agent mode.
+> - [GitHub Copilot](https://github.com/features/copilot) was set to use [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents in Agent mode.
 
 **Configurations to enable Playwright MCP:**
 
@@ -207,7 +207,7 @@
   }
   ```
 
-3. Prepare simple test prompts and add the prompt Markdown to the ```.github``` folder
+3. Prepare test prompts and add the prompt Markdown to the ```.github``` folder
 
 - For this project, I created a prompt Markdown file [1-generate-tests](.github/1-generate-tests.prompt.md) to create the initial Playwright tests.
 - For this project, I created a second prompt Markdown file [2-fix-failing-tests](.github/2-fix-failing-tests.prompt.md) to then later on continue to fix the generated Playwright tests further.
@@ -215,23 +215,25 @@
 4. In the IDE, use Agent Mode, add the prompt to the context to create the initial tests and iterate until all tests pass.
 
 - Agent mode uses the Playwright MCP to navigate to the site and use the browser to explore the app like a real user.
-- Let the agent freely navigate, discover functionality, and generate tests automatically based on its interactions.
-- This generated the bulk of the test for me to then tweak to my preferences.
+- Prompts the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
+- This generated the bulk of the test, allowing me to tweak it further to my preferences.
 - After wrapping up the interactions, the agent summarises its findings to continue updating and fixing the tests as per your preferences.
 
    ```bash
    Explore https://badj.github.io/NZGovernmentsDebtTrends2002-2025/
    ```
 
-5. Test Generation & Execution: The agent generates a full Playwright test file based on the interactions, and it fixes errors automatically before running each iteration of the tests.
+5. Test Generation & Execution:
+  
+> The agent generates a full Playwright test file based on the interactions, and it fixes errors automatically before running each iteration of the tests.
 
-- Once generated, it opens a terminal and runs the tests. When it passes, you can / should inspect the steps taken to confirm accuracy and false positives. 
-- It’s a full cycle: exploration → generation → execution → review. 
-- I iterated and refined the prompt to increase the test count and prompted the agent to explore additional areas.
+- Once generated, it opens a terminal and runs the tests. When it passes, you can / should inspect the steps taken to confirm accuracy and check for false positives. 
+- It’s a full cycle where it: explores → MCP generates the tests → MCP executes the tests → MCP reviews the results of the test run. 
+- **For best results:** Iterate and refine the prompts to increase the test count and prompt the agent to explore additional areas as well.
 
 > **Notes and observations during MCP usage with an agent to complete all tests to run green:**
 >
->- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [ChatGPT](https://chatgpt.com/) as agents with [Playwright MCP](https://github.com/microsoft/playwright-mcp).
+>- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet 3.5](https://www.anthropic.com/claude/sonnet) and [Chat-GPT 4.1](https://chatgpt.com/) as agents using [Playwright MCP](https://github.com/microsoft/playwright-mcp).
 >- Manual effort to fix some of the failing tests was necessary where MCP missed the mark!
 
 ---
@@ -239,10 +241,10 @@
 ### TODOs:
 
 1. Decrease the test count after checking for duplicated coverage. 
-2. Enable WebKit and Firefox cross browser runners:
+2. Enable WebKit and Firefox cross-browser runners:
 - Fix 3 failing tests that are failing for WebKit and Firefox runs:
   - All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
   - Visualisation changes are handled - Failing for WebKit runs!
-  - Download options downloading as expected - Failing for Webkit runs!
+  - Download options downloading as expected - Failing for WebKit runs!
 
 ---
