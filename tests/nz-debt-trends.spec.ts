@@ -9,6 +9,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         });
 
     test('Basic visualisation elements displayed', async ({ page }) => {
+        
         // Verify main plot container
         const plotContainer = page.locator('.js-plotly-plot');
         await expect(plotContainer).toBeVisible();
@@ -21,6 +22,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Interactive elements displayed', async ({ page }) => {
+        
         // Get the plot container and its dimensions
         const plotContainer = page.locator('.js-plotly-plot');
         const box = await plotContainer.boundingBox();
@@ -43,6 +45,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Mouse interactions handled', async ({ page }) => {
+        
         // Get the plot container
         const plotContainer = page.locator('.js-plotly-plot');
         const box = await plotContainer.boundingBox();
@@ -64,8 +67,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Visualisations loaded and displayed', async ({ page }) => {
-        //await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
-
+       
         // Verify the page title
         await expect(page).toHaveTitle('NZ Government Debt Interactive Chart with Table and References');
 
@@ -74,7 +76,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Visualisation components displayed', async ({ page }) => {
-        //await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for and verify the Plotly graph container
         const plotContainer = page.locator('.js-plotly-plot');
@@ -89,7 +90,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Data table and Data References are displayed', async ({ page }) => {
-        //await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Verify table is present and has basic structure
         const table = page.locator('table');
@@ -104,7 +104,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Available plot controls are available', async ({ page }) => {
-        //await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -131,7 +130,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Export PNG button downloads visualisation image', async ({ page }) => {
-        //await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -157,7 +155,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Export CSV button downloads data table', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -176,7 +173,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(pngButton).toBeVisible();
         await pngButton.click();
 
-
         // Wait for the download
         const download = await downloadPromise;
 
@@ -185,7 +181,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Plot interaction modes works', async ({ page }) => {
-        //await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot
         const plotContainer = page.locator('.js-plotly-plot');
@@ -215,7 +210,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Plot type options works', async ({ page }) => {
-        //await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot
         const plotContainer = page.locator('.js-plotly-plot');
@@ -247,7 +241,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Plot interactions work', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -289,7 +282,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Verify plot controls and options', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -316,7 +308,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All interactive modes work', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot
         const plotContainer = page.locator('.js-plotly-plot');
@@ -353,7 +344,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Visualisation changes are handled', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -384,7 +374,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All plot controls interactive as expected', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible and interactive
         const plotContainer = page.locator('.js-plotly-plot');
@@ -422,7 +411,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Download plot as PNG options downloading as expected', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot
         const plotContainer = page.locator('.js-plotly-plot');
@@ -442,7 +430,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Data point interaction interacting as expected', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot
         const plotContainer = page.locator('.js-plotly-plot');
@@ -472,7 +459,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Plot interactions interacting as expected', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -514,9 +500,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All Dropdowns contain expected graph data filter options', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
+        
         await page.waitForLoadState('networkidle');
-
         await checkDropdownOptions(page, 'All Metrics', [
             'All Metrics', '% GDP Only', 'Amount Only', 'Per Capita Only', 'Population Only'
         ]);
@@ -535,7 +520,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All Metrics selections update visualisation when filter options are changed', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -558,7 +542,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All Political Party selections update visualisation when filter options are changed', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -577,7 +560,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All PM selections update visualisation when filter options are changed', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -599,7 +581,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All colour selections update visualisation when filter options are changed', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
@@ -619,7 +600,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All scale selections update visualisation when filter options are changed', async ({ page }) => {
-        // await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
 
         // Wait for plot to be visible
         const plotContainer = page.locator('.js-plotly-plot');
