@@ -30,7 +30,7 @@
   - [Run tests and generate the test run report to view test results](#run-tests-and-generate-the-test-run-report-to-view-the-test-results)
   - [CICD Integration](#cicd-integration)
   - [Playwright MCP integration with Claude Sonnet and Chat-GPT agents](#playwright-mcp-integration-with-claude-sonnet-and-chat-gpt-agents)
-- [TODOs](#todos)
+- [TODOs and Open Issues](#todos-and-open-issues)
 
 ---
 
@@ -239,9 +239,11 @@
 
 ---
 
-### TODOs:
+### TODOs and Open Issues:
+
+[Open Issues to resolve:](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues)
 
 1. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/2)
-2. [Enable WebKit and Firefox cross-browser runners](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/1)
+2. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/1)
 
 ---
