@@ -1,11 +1,20 @@
-import { test, expect } from '@playwright/test';
+import {test as base, expect, Locator} from '@playwright/test';
+
+interface TestFixtures {
+    plotContainer: Locator;
+}
+
+const test = base.extend<TestFixtures>({
+    plotContainer: async ({ page }, use) => {
+        await use(page.locator('.js-plotly-plot'));
+    },
+});
 
 test.describe('NZ Government Debt Trends Website - features and functionality tests', () => {
 
-        test.beforeEach(async ({ page }) => {
+        test.beforeEach(async ({ page, plotContainer }) => {
             await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
             // Wait for the visualisation to be fully loaded and verify that main plot container is visible
-            const plotContainer = page.locator('.js-plotly-plot');
             await expect(plotContainer).toBeVisible();
         });
 
@@ -16,9 +25,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(page.locator('.plot-container')).toBeVisible();
     });
 
-    test('Interactive elements displayed', async ({ page }) => {
+    test('Interactive elements displayed', async ({ page, plotContainer }) => {
         // Get the plot container and its dimensions
-        const plotContainer = page.locator('.js-plotly-plot');
         const box = await plotContainer.boundingBox();
 
         if (box) {
@@ -38,9 +46,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         }
     });
 
-    test('Mouse interactions handled', async ({ page }) => {
+    test('Mouse interactions handled', async ({ page, plotContainer }) => {
         // Get the plot container
-        const plotContainer = page.locator('.js-plotly-plot');
         const box = await plotContainer.boundingBox();
 
         if (box) {
@@ -83,9 +90,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(yearHeader).toBeVisible();
     });
 
-    test('Available plot controls are available', async ({ page }) => {
+    test('Available plot controls are available', async ({ page, plotContainer }) => {
         // Move mouse over plot area and wait for controls
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Check for basic modebar presence
@@ -100,9 +106,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(page.locator('a[data-title*="Reset"]').first()).toBeVisible();
     });
 
-    test('Export PNG button downloads visualisation image', async ({ page }) => {
+    test('Export PNG button downloads visualisation image', async ({ page, plotContainer }) => {
         // Show modebar by hovering over plot
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(500);
         // Setup download handler
@@ -117,9 +122,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         expect(download.suggestedFilename()).toMatch(/\.png$/);
     });
 
-    test('Export CSV button downloads data table', async ({ page }) => {
+    test('Export CSV button downloads data table', async ({ page, plotContainer }) => {
         // Show modebar by hovering over plot
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(500);
         // Setup download handler
@@ -135,9 +139,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         expect(download.suggestedFilename()).toMatch(/\.csv$/);
     });
 
-    test('Plot interaction modes works', async ({ page }) => {
+    test('Plot interaction modes works', async ({ page, plotContainer}) => {
         // Get plot dimensions for interaction
-        const plotContainer = page.locator('.js-plotly-plot');
         const box = await plotContainer.boundingBox();
         if (!box) throw new Error('Plot container not found');
         // Test different interaction modes
@@ -156,9 +159,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         }
     });
 
-    test('Plot type options works', async ({ page }) => {
+    test('Plot type options works', async ({ page, plotContainer }) => {
         // Move mouse over plot to show modebar
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Look for the trace type button if available
@@ -179,9 +181,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Plot interactions work', async ({ page }) => {
+    test('Plot interactions work', async ({ page, plotContainer }) => {
         // Wait for modebar to appear
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         const modebar = page.locator('.modebar');
         await expect(modebar).toBeVisible();
@@ -212,9 +213,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Verify plot controls and options', async ({ page }) => {
+    test('Verify plot controls and options', async ({ page, plotContainer }) => {
         // Move mouse over plot area and wait for controls
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Check for basic modebar presence
@@ -229,9 +229,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(page.locator('a[data-title*="Reset"]').first()).toBeVisible();
     });
 
-    test('All interactive modes work', async ({ page }) => {
+    test('All interactive modes work', async ({ page, plotContainer }) => {
         // Get plot dimensions
-        const plotContainer = page.locator('.js-plotly-plot');
         const box = await plotContainer.boundingBox();
         if (!box) throw new Error('Plot container not found');
         // Hover to show controls
@@ -255,9 +254,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Visualisation changes are handled', async ({ page }) => {
+    test('Visualisation changes are handled', async ({ page, plotContainer }) => {
         // Move mouse over plot
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Interact with plot controls
@@ -278,9 +276,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         }
     });
 
-    test('All plot controls interactive as expected', async ({ page }) => {
+    test('All plot controls interactive as expected', async ({ page, plotContainer }) => {
         // Move mouse over plot area to reveal controls
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Verify the modebar appears
@@ -306,9 +303,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         }
     });
 
-    test('Download plot as PNG options downloading as expected', async ({ page }) => {
+    test('Download plot as PNG options downloading as expected', async ({ page, plotContainer }) => {
         // Show modebar
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Find the download button (adjusted locator)
@@ -319,9 +315,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Data point interaction interacting as expected', async ({ page }) => {
+    test('Data point interaction interacting as expected', async ({ page, plotContainer }) => {
         // Move mouse over plot area
-        const plotContainer = page.locator('.js-plotly-plot');
         const box = await plotContainer.boundingBox();
         if (box) {
             // Move to several points to check for tooltips
@@ -343,9 +338,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Plot interactions interacting as expected', async ({ page }) => {
+    test('Plot interactions interacting as expected', async ({ page, plotContainer }) => {
         // Show modebar by hovering over plot
-        const plotContainer = page.locator('.js-plotly-plot');
         await plotContainer.hover();
         const modebar = page.locator('.modebar');
         await expect(modebar).toBeVisible();
@@ -375,7 +369,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('All Dropdowns contain expected graph data filter options', async ({ page }) => {
-
         await page.waitForLoadState('networkidle');
         await checkDropdownOptions(page, 'All Metrics', [
             'All Metrics', '% GDP Only', 'Amount Only', 'Per Capita Only', 'Population Only'
@@ -394,7 +387,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         ]);
     });
 
-    test('All Metrics selections update visualisation when filter options are changed', async ({ page }) => {
+    test('All Metrics selections update visualisation when filter options are changed', async ({ page, plotContainer }) => {
         // Wait for and click the first dropdown (Chart Type)
         const chartTypeDropdown = page.locator('.updatemenu-header-group').first();
         await expect(chartTypeDropdown).toBeVisible();
@@ -407,12 +400,10 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             'Population Only'
         ];
         // Test each filter option
-        const plotContainer = page.locator('.js-plotly-plot');
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All Political Party selections update visualisation when filter options are changed', async ({ page }) => {
-
+    test('All Political Party selections update visualisation when filter options are changed', async ({ page, plotContainer }) => {
         const chartTypeDropdown = page.locator('.updatemenu-header-group').nth(1);
         await expect(chartTypeDropdown).toBeVisible();
 
@@ -422,12 +413,10 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             'National Only'
         ];
         // Test each filter option
-        const plotContainer = page.locator('.js-plotly-plot');
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All PM selections update visualisation when filter options are changed', async ({ page }) => {
-
+    test('All PM selections update visualisation when filter options are changed', async ({ page, plotContainer }) => {
         const chartTypeDropdown = page.locator('.updatemenu-header-group').nth(2);
         await expect(chartTypeDropdown).toBeVisible();
 
@@ -440,12 +429,10 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             'Christopher Luxon'
         ];
         // Test each filter option
-        const plotContainer = page.locator('.js-plotly-plot');
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All colour selections update visualisation when filter options are changed', async ({ page }) => {
-
+    test('All colour selections update visualisation when filter options are changed', async ({ page, plotContainer }) => {
         const chartTypeDropdown = page.locator('.updatemenu-header-group').nth(3);
         await expect(chartTypeDropdown).toBeVisible();
 
@@ -456,12 +443,10 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             'Hide Population'
         ];
         // Test each filter option
-        const plotContainer = page.locator('.js-plotly-plot');
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
-    test('All scale selections update visualisation when filter options are changed', async ({ page }) => {
-
+    test('All scale selections update visualisation when filter options are changed', async ({ page, plotContainer }) => {
         const chartTypeDropdown = page.locator('.updatemenu-header-group').nth(4);
         await expect(chartTypeDropdown).toBeVisible();
 
@@ -470,7 +455,6 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             'Log Scale'
         ];
         // Test each filter option
-        const plotContainer = page.locator('.js-plotly-plot');
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
     });
 
