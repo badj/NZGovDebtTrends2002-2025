@@ -7,8 +7,8 @@
 > - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/) or
 > - View standalone HTML file in your browser:
 >   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
+>   - OR Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - OR [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
 > - The data table and all export options work directly in the browser.
 
 ![chart-demo.gif](Images/chart-demo.gif)
@@ -87,8 +87,8 @@
 > - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/) or 
 > - As a standalone HTML file in your browser locally:
 >   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser. 
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE → download the latest plotly.js from CDN. 
+>   - OR Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - OR [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE → download the latest plotly.js from CDN. 
 > - The data table and all export options work directly in the browser.
 
 ---
@@ -155,15 +155,23 @@
 3. OR Execute the test with the UI
    ```bash
    npx playwright test --ui
+   ```
+4. OR Execute the test (headless) with increased workers to speed up the test run
+   ```bash
+   npx playwright test --workers=10
    ``` 
-4. View the HTML report when test execution completes - Command will print to the terminal
+5. View the HTML report when test execution completes: ```show-report``` command prints to the terminal
    ```bash
    npx playwright show-report
    ```
-- A hyperlink to the web server will be printed to the terminal that links through to the generated report - sample output:
-
-  ```
-  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.
+- Terminal output sample of a successful test run
+  ```terminaloutput
+  Running 25 tests using 10 workers
+  25 passed (8.8s)
+  
+  To open last HTML report run:
+  
+  npx playwright show-report
   ```
 
 ---
@@ -217,7 +225,7 @@
 - Agent mode uses the Playwright MCP to navigate to the site and use the browser to explore the app like a real user.
 - Prompts prompt/instruct the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
 
-   ```bash
+   ```terminaloutput
    Explore https://badj.github.io/NZGovDebtTrends2002-2025/
    ```
 
