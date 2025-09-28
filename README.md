@@ -232,8 +232,8 @@
 - It’s a full cycle where it: MCP explores → MCP generates the tests → MCP executes the tests → MCP reviews the results of the test run. 
 - **For best results:** Iterate and refine the prompts to increase the test count and prompt the agent to explore additional areas as well.
 
-> **Notes and observations during MCP usage with an agent to complete all tests to run green:**
->
+**Notes and observations during MCP usage with an agent to complete all tests to run green:**
+
 >- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet 3.5](https://www.anthropic.com/claude/sonnet) and [Chat-GPT 4.1](https://chatgpt.com/) as agents using [Playwright MCP](https://github.com/microsoft/playwright-mcp).
 >- Manual effort to fix some of the failing tests was necessary where MCP missed the mark!
 
