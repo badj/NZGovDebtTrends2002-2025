@@ -2,13 +2,13 @@
 
 > New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) charting generated with historical static data from various sources *(refer to data sources provided below table section)* and end-to-end test automation coverage with [Playwright Test Framework](https://playwright.dev/) support generated with [MCP(Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro).
 >
-> [![pages-build-deployment](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
+> [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
 > 
-> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovernmentsDebtTrends2002-2025/) or
+> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/) or
 > - View standalone HTML file in your browser:
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
+>   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
 > - The data table and all export options work directly in the browser.
 
 ![chart-demo.gif](Images/chart-demo.gif)
@@ -17,7 +17,7 @@
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
 >   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
-> [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
+> [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
 
 ---
 ### Table of contents
@@ -82,13 +82,13 @@
 
 ### Project information
 
-> [![pages-build-deployment](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
+> [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
 > 
-> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovernmentsDebtTrends2002-2025/) or 
+> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/) or 
 > - As a standalone HTML file in your browser locally:
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser. 
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE → download the latest plotly.js from CDN. 
+>   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser. 
+>   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE → download the latest plotly.js from CDN. 
 > - The data table and all export options work directly in the browser.
 
 ---
@@ -107,7 +107,7 @@
 >   - Mode bar and chart controls are present and functional.
 >   - Table Data and Data Sources are present and functional.
 > 
-> [![Playwright Tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml)
+> [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
 
 ---
 
@@ -120,11 +120,11 @@
 ### Setup
 
 1. Clone or Download
-    - Clone this repository: `git clone https://github.com/badj/NZGovernmentsDebtTrends2002-2025.git`
+    - Clone this repository: `git clone https://github.com/badj/NZGovDebtTrends2002-2025.git`
     - Alternatively, download the ZIP file and extract it.
 2. Navigate to Project Directory:
    ```bash
-   cd NZGovernmentsDebtTrends2002-2025
+   cd NZGovDebtTrends2002-2025
    ```
 3. Initialise a Node.js project
    ```bash
@@ -170,8 +170,8 @@
 ### CICD Integration
 
 - **GitHub Actions/Workflows:**
-  - Automatically [publishes the GitHub Page](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
-  - Automatically [runs Playwright tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
+  - Automatically [publishes the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
+  - Automatically [runs Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
 - **Test Reports:** HTML reports are generated for each run and uploaded as workflow artefacts.
 - **Trace & Video:** Retained on failure for debugging.
 
@@ -218,7 +218,7 @@
 - Prompts prompt/instruct the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
 
    ```bash
-   Explore https://badj.github.io/NZGovernmentsDebtTrends2002-2025/
+   Explore https://badj.github.io/NZGovDebtTrends2002-2025/
    ```
 
 - This generated the bulk of the test, allowing me to tweak it further to my preferences.
@@ -241,9 +241,9 @@
 
 ### TODOs and Open Issues:
 
-[Open Issues to resolve:](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues)
+[Open Issues to resolve:](https://github.com/badj/NZGovDebtTrends2002-2025/issues)
 
-1. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/2)
-2. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/1)
+1. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
+2. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
 
 ---

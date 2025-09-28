@@ -1,7 +1,7 @@
 {
   "name": "playwright-mcp-poc",
   "version": "1.0.0",
-  "description": "",
+  "description": "New Zealand Government Debt Trends 2002–2025 in a Plotly JS interactive graph with Playwright end-to-end testing and Playwright MCP support",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
@@ -11,5 +11,16 @@
   "devDependencies": {
     "@playwright/test": "^1.55.1",
     "@types/node": "^24.5.2"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/badj/NZGovDebtTrends2002-2025.git"
+  },
+  "bugs": {
+    "url": "https://github.com/badj/NZGovDebtTrends2002-2025/issues"
+  },
+  "homepage": "https://github.com/badj/NZGovDebtTrends2002-2025#readme"
 }
