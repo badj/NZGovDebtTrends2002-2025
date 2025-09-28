@@ -247,5 +247,6 @@
   - All Dropdowns contain expected graph data filter options - Failing for Firefox runs!
   - Visualisation changes are handled - Failing for WebKit runs!
   - Download options downloading as expected - Failing for WebKit runs!
+  - [Issue reported to resolve the 3 failing tests](https://github.com/badj/NZGovernmentsDebtTrends2002-2025/issues/1)
 
 ---
