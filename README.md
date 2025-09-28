@@ -229,7 +229,7 @@
 > The agent generates a full Playwright test file based on the interactions, and it fixes errors automatically before running each iteration of the tests.
 
 - Once generated, it opens a terminal and runs the tests. When it passes, you can / should inspect the steps taken to confirm accuracy and check for false positives. 
-- It’s a full cycle where it: explores → MCP generates the tests → MCP executes the tests → MCP reviews the results of the test run. 
+- It’s a full cycle where it: MCP explores → MCP generates the tests → MCP executes the tests → MCP reviews the results of the test run. 
 - **For best results:** Iterate and refine the prompts to increase the test count and prompt the agent to explore additional areas as well.
 
 > **Notes and observations during MCP usage with an agent to complete all tests to run green:**
