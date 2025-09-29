@@ -1,12 +1,37 @@
-import {test as base, expect, Locator} from '@playwright/test';
+import {test as base, expect, Locator, Download} from '@playwright/test';
 
 interface TestFixtures {
     plotContainer: Locator;
+    modeBar: Locator;
+    downloadPromise: Promise<Download>;
+    zoomButton: Locator;
+    resetButtonZoom: Locator;
+    resetButton: Locator;
+    plotBoundingBox: { x: number; y: number; width: number; height: number } | null;
 }
 
 const test = base.extend<TestFixtures>({
     plotContainer: async ({ page }, use) => {
         await use(page.locator('.js-plotly-plot'));
+    },
+    modeBar: async ({ page }, use) => {
+        await use(page.locator('.modebar'));
+    },
+    downloadPromise: async ({ page }, use) => {
+        await use(page.waitForEvent('download'));
+    },
+    zoomButton: async ({ page }, use) => {
+        await use(page.locator('a.modebar-btn[data-attr="dragmode"][data-val="zoom"]'));
+    },
+    resetButtonZoom: async ({ page }, use) => {
+        await use(page.locator('a.modebar-btn[data-attr="zoom"][data-val="reset"]'));
+    },
+    resetButton: async ({ page }, use) => {
+        await use(page.locator('a[data-title*="Reset"]').first());
+    },
+    plotBoundingBox: async ({ page }, use) => {
+        const box = await page.locator('.js-plotly-plot').boundingBox();
+        await use(box);
     },
 });
 
@@ -25,17 +50,14 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(page.locator('.plot-container')).toBeVisible();
     });
 
-    test('Interactive elements displayed', async ({ page, plotContainer }) => {
+    test('Interactive elements displayed', async ({ page, plotBoundingBox }) => {
         // Get the plot container and its dimensions
-        const box = await plotContainer.boundingBox();
-
-        if (box) {
+        if (plotBoundingBox) {
             // Move to the center of the plot
             await page.mouse.move(
-                box.x + box.width / 2,
-                box.y + box.height / 2
+                plotBoundingBox.x + plotBoundingBox.width / 2,
+                plotBoundingBox.y + plotBoundingBox.height / 2
             );
-
             // Verify the presence of interactive elements
             const dragElements = page.locator('.drag');
             await expect(page.locator('.cartesianlayer')).toBeVisible();
@@ -46,15 +68,13 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         }
     });
 
-    test('Mouse interactions handled', async ({ page, plotContainer }) => {
+    test('Mouse interactions handled', async ({ page, plotContainer, plotBoundingBox }) => {
         // Get the plot container
-        const box = await plotContainer.boundingBox();
-
-        if (box) {
+        if (plotBoundingBox) {
             // Move mouse to different areas of the plot
             await page.mouse.move(
-                box.x + box.width / 2,
-                box.y + box.height / 2
+                plotBoundingBox.x + plotBoundingBox.width / 2,
+                plotBoundingBox.y + plotBoundingBox.height / 2
             );
             // Short wait for any hover effects
             await page.waitForTimeout(100);
@@ -94,7 +114,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         // Move mouse over plot area and wait for controls
         await plotContainer.hover();
         await page.waitForTimeout(1000);
-        // Check for basic modebar presence
+        // Check for basic mode bar presence
         await expect(page.locator('.modebar')).toBeVisible();
         // Check for drag mode controls
         await expect(page.locator('a[data-attr="dragmode"]').first()).toBeVisible();
@@ -106,12 +126,11 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(page.locator('a[data-title*="Reset"]').first()).toBeVisible();
     });
 
-    test('Export PNG button downloads visualisation image', async ({ page, plotContainer }) => {
-        // Show modebar by hovering over plot
+    test('Export PNG button downloads visualisation image', async ({ page, plotContainer, downloadPromise }) => {
+        // Show mode bar by hovering over plot
         await plotContainer.hover();
         await page.waitForTimeout(500);
         // Setup download handler
-        const downloadPromise = page.waitForEvent('download');
         // Find and click the PNG download button
         const pngButton = page.getByRole('button', { name: 'Export PNG' });
         await expect(pngButton).toBeVisible();
@@ -122,31 +141,29 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         expect(download.suggestedFilename()).toMatch(/\.png$/);
     });
 
-    test('Export CSV button downloads data table', async ({ page, plotContainer }) => {
-        // Show modebar by hovering over plot
+    test('Export CSV button downloads data table', async ({ page, plotContainer, downloadPromise }) => {
+        // Show mode bar by hovering over plot
         await plotContainer.hover();
         await page.waitForTimeout(500);
         // Setup download handler
-        const downloadPromise = page.waitForEvent('download');
         // Find and click the CSV download button
-        const pngButton = page.getByRole('button', { name: 'Export CSV' });
+        const csvButton = page.getByRole('button', { name: 'Export CSV' });
         // await page.getByRole('button', { name: 'Export PNG' }).click();
-        await expect(pngButton).toBeVisible();
-        await pngButton.click();
+        await expect(csvButton).toBeVisible();
+        await csvButton.click();
         // Wait for the download
         const download = await downloadPromise;
         // Verify the downloaded file
         expect(download.suggestedFilename()).toMatch(/\.csv$/);
     });
 
-    test('Plot interaction modes works', async ({ page, plotContainer}) => {
+    test('Plot interaction modes works', async ({ page, plotContainer, plotBoundingBox}) => {
         // Get plot dimensions for interaction
-        const box = await plotContainer.boundingBox();
-        if (!box) throw new Error('Plot container not found');
+        if (!plotBoundingBox) throw new Error('Plot container not found');
         // Test different interaction modes
         const modes = ['zoom', 'pan'];
         for (const mode of modes) {
-            // Show modebar
+            // Show mode bar
             await plotContainer.hover();
             await page.waitForTimeout(500);
             // Click mode button
@@ -160,7 +177,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Plot type options works', async ({ page, plotContainer }) => {
-        // Move mouse over plot to show modebar
+        // Move mouse over plot to show mode bar
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Look for the trace type button if available
@@ -181,34 +198,25 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Plot interactions work', async ({ page, plotContainer }) => {
-        // Wait for modebar to appear
+    test('Plot interactions work', async ({ page, plotContainer, modeBar, zoomButton, resetButtonZoom, plotBoundingBox }) => {
+        // Wait for mode bar to appear
         await plotContainer.hover();
-        const modebar = page.locator('.modebar');
-        await expect(modebar).toBeVisible();
-
-        // Debugging: Log the full HTML of the modebar //TODO: Remove at some point - keeping for future debugging reference!
-        // const modebarHTML = await modebar.innerHTML();
-        // console.log('Modebar HTML:', modebarHTML);
-
+        await expect(modeBar).toBeVisible();
         // Get plot dimensions
-        const box = await plotContainer.boundingBox();
-        if (!box) {
+        if (!plotBoundingBox) {
             throw new Error('Could not get plot dimensions');
         }
         // Test zoom interaction
-        const zoomButton = page.locator('a.modebar-btn[data-attr="dragmode"][data-val="zoom"]');
         await expect(zoomButton).toBeVisible();
         await zoomButton.click();
         // Perform zoom action
-        await page.mouse.move(box.x + box.width / 4, box.y + box.height / 4);
+        await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width / 4, plotBoundingBox.y + plotBoundingBox.height / 4);
         await page.mouse.down();
-        await page.mouse.move(box.x + box.width * 3/4, box.y + box.height * 3/4);
+        await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width * 3/4, plotBoundingBox.y + plotBoundingBox.height * 3/4);
         await page.mouse.up();
         // Reset axes
-        const resetButton = page.locator('a.modebar-btn[data-attr="zoom"][data-val="reset"]');
-        await expect(resetButton).toBeVisible();
-        await resetButton.click();
+        await expect(resetButtonZoom).toBeVisible();
+        await resetButtonZoom.click();
         // Verify plot is still visible after interactions
         await expect(plotContainer).toBeVisible();
     });
@@ -217,7 +225,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         // Move mouse over plot area and wait for controls
         await plotContainer.hover();
         await page.waitForTimeout(1000);
-        // Check for basic modebar presence
+        // Check for basic mode bar presence
         await expect(page.locator('.modebar')).toBeVisible();
         // Check for drag mode controls
         await expect(page.locator('a[data-attr="dragmode"]').first()).toBeVisible();
@@ -229,10 +237,9 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(page.locator('a[data-title*="Reset"]').first()).toBeVisible();
     });
 
-    test('All interactive modes work', async ({ page, plotContainer }) => {
+    test('All interactive modes work', async ({ page, plotContainer, resetButton, plotBoundingBox }) => {
         // Get plot dimensions
-        const box = await plotContainer.boundingBox();
-        if (!box) throw new Error('Plot container not found');
+        if (!plotBoundingBox) throw new Error('Plot container not found');
         // Hover to show controls
         await plotContainer.hover();
         await page.waitForTimeout(1000);
@@ -243,18 +250,17 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         // Verify plot remains interactive
         await expect(page.locator('.draglayer')).toBeVisible();
         // Try some interactions
-        await page.mouse.move(box.x + box.width / 4, box.y + box.height / 4);
+        await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width / 4, plotBoundingBox.y + plotBoundingBox.height / 4);
         await page.mouse.down();
-        await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+        await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width / 2, plotBoundingBox.y + plotBoundingBox.height / 2);
         await page.mouse.up();
         // Reset view
-        const resetButton = page.locator('a[data-title*="Reset"]').first();
         await resetButton.click();
         // Verify plot is still visible
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Visualisation changes are handled', async ({ page, plotContainer }) => {
+    test('Visualisation changes are handled', async ({ page, plotContainer, resetButton }) => {
         // Move mouse over plot
         await plotContainer.hover();
         await page.waitForTimeout(1000);
@@ -270,19 +276,17 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             }
         }
         // Reset view
-        const resetButton = page.locator('a[data-title*="Reset"]').first();
         if (await resetButton.isVisible()) {
             await resetButton.click();
         }
     });
 
-    test('All plot controls interactive as expected', async ({ page, plotContainer }) => {
+    test('All plot controls interactive as expected', async ({ page, plotContainer, modeBar }) => {
         // Move mouse over plot area to reveal controls
         await plotContainer.hover();
         await page.waitForTimeout(1000);
-        // Verify the modebar appears
-        const modebar = page.locator('.modebar');
-        await expect(modebar).toBeVisible();
+        // Verify the mode bar appears
+        await expect(modeBar).toBeVisible();
         // Check for available plot controls using the correct data attributes
         const plotControls = [
             { attr: 'dragmode', val: 'zoom' },      // Zoom mode
@@ -304,7 +308,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Download plot as PNG options downloading as expected', async ({ page, plotContainer }) => {
-        // Show modebar
+        // Show mode bar
         await plotContainer.hover();
         await page.waitForTimeout(1000);
         // Find the download button (adjusted locator)
@@ -315,10 +319,9 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Data point interaction interacting as expected', async ({ page, plotContainer }) => {
+    test('Data point interaction interacting as expected', async ({ page, plotContainer, plotBoundingBox }) => {
         // Move mouse over plot area
-        const box = await plotContainer.boundingBox();
-        if (box) {
+        if (plotBoundingBox) {
             // Move to several points to check for tooltips
             const points = [
                 { x: 0.25, y: 0.25 },
@@ -328,8 +331,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
 
             for (const point of points) {
                 await page.mouse.move(
-                    box.x + box.width * point.x,
-                    box.y + box.height * point.y
+                    plotBoundingBox.x + plotBoundingBox.width * point.x,
+                    plotBoundingBox.y + plotBoundingBox.height * point.y
                 );
                 await page.waitForTimeout(100);
             }
@@ -338,27 +341,23 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(plotContainer).toBeVisible();
     });
 
-    test('Plot interactions interacting as expected', async ({ page, plotContainer }) => {
-        // Show modebar by hovering over plot
+    test('Plot interactions interacting as expected', async ({ page, plotContainer, modeBar, zoomButton, resetButtonZoom, plotBoundingBox }) => {
+        // Show mode bar by hovering over plot
         await plotContainer.hover();
-        const modebar = page.locator('.modebar');
-        await expect(modebar).toBeVisible();
+        await expect(modeBar).toBeVisible();
         // Test zoom mode
-        const zoomButton = page.locator('.modebar-btn[data-attr="dragmode"][data-val="zoom"]');
         await expect(zoomButton).toBeVisible();
         await zoomButton.click();
         // Get plot dimensions for interaction
-        const box = await plotContainer.boundingBox();
-        if (!box) throw new Error('Plot container not found');
+        if (!plotBoundingBox) throw new Error('Plot container not found');
         // Perform zoom gesture
-        await page.mouse.move(box.x + box.width * 0.25, box.y + box.height * 0.25);
+        await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width * 0.25, plotBoundingBox.y + plotBoundingBox.height * 0.25);
         await page.mouse.down();
-        await page.mouse.move(box.x + box.width * 0.75, box.y + box.height * 0.75);
+        await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width * 0.75, plotBoundingBox.y + plotBoundingBox.height * 0.75);
         await page.mouse.up();
         // Reset axes using the reset button
-        const resetButton = page.locator('.modebar-btn[data-attr="zoom"][data-val="reset"]');
-        await expect(resetButton).toBeVisible();
-        await resetButton.click();
+        await expect(resetButtonZoom).toBeVisible();
+        await resetButtonZoom.click();
         // Test pan mode
         const panButton = page.locator('.modebar-btn[data-attr="dragmode"][data-val="pan"]');
         await expect(panButton).toBeVisible();
