@@ -11,7 +11,7 @@
 >   - OR [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
 > - The data table and all export options work directly in the browser.
 
-![chart-demo.gif](Images/chart-demo.gif)
+> ![chart-demo.gif](Images/chart-demo.gif)
 
 > - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
