@@ -99,7 +99,7 @@
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
 >   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
-> - Playwright Key Test Coverage *(25 Tests)*:
+> - Playwright Key Test Coverage *(24 Tests)*:
 >   - Visualisation loads and displays correctly.
 >   - All dropdowns contain expected filter options.
 >   - Selecting filters updates the graph as expected.
@@ -166,8 +166,8 @@
    ```
 - Terminal output sample of a successful test run
   ```terminaloutput
-  Running 25 tests using 10 workers
-  25 passed (8.8s)
+  Running 24 tests using 10 workers
+  24 passed (8.6s)
   
   To open last HTML report run:
   
@@ -243,7 +243,7 @@
 **Notes and observations during MCP usage with an agent to complete all tests to run green:**
 
 >- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet 3.5](https://www.anthropic.com/claude/sonnet) and [Chat-GPT 4.1](https://chatgpt.com/) as agents using [Playwright MCP](https://github.com/microsoft/playwright-mcp).
->- Manual effort to fix some of the failing tests was necessary where MCP missed the mark!
+>- Manual effort to fix and refactor some of the failing and passing tests was necessary where MCP missed the mark!
 
 ---
 

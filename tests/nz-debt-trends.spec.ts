@@ -37,9 +37,9 @@ const test = base.extend<TestFixtures>({
 
 test.describe('NZ Government Debt Trends Website - features and functionality tests', () => {
 
-        test.beforeEach(async ({ page, plotContainer }) => {
+    test.beforeEach(async ({ page, plotContainer }) => {
             await page.goto('https://badj.github.io/NZGovDebtTrends2002-2025/');
-            // Wait for the visualisation to be fully loaded and verify that main plot container is visible
+            // Wait for the visualisation to be fully loaded and verify that the main plot container is visible
             await expect(plotContainer).toBeVisible();
         });
 
@@ -71,7 +71,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     test('Mouse interactions handled', async ({ page, plotContainer, plotBoundingBox }) => {
         // Get the plot container
         if (plotBoundingBox) {
-            // Move mouse to different areas of the plot
+            // Move the mouse to different areas of the plot
             await page.mouse.move(
                 plotBoundingBox.x + plotBoundingBox.width / 2,
                 plotBoundingBox.y + plotBoundingBox.height / 2
@@ -100,7 +100,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Data table and Data References are displayed', async ({ page }) => {
-        // Verify table is present and has basic structure
+        // Verify the table is present and has the basic structure
         const table = page.locator('table');
         await expect(table).toBeVisible();
         // Check for a specific data source
@@ -110,7 +110,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(yearHeader).toBeVisible();
     });
 
-    test('Available plot controls are available', async ({ page, plotContainer }) => {
+    test('All plot controls are loaded and available for use', async ({ page, plotContainer }) => {
         // Move mouse over plot area and wait for controls
         await plotContainer.hover();
         await page.waitForTimeout(1000);
@@ -127,10 +127,10 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Export PNG button downloads visualisation image', async ({ page, plotContainer, downloadPromise }) => {
-        // Show mode bar by hovering over plot
+        // Show mode bar by hovering over the plot
         await plotContainer.hover();
         await page.waitForTimeout(500);
-        // Setup download handler
+        // Set up the download handler
         // Find and click the PNG download button
         const pngButton = page.getByRole('button', { name: 'Export PNG' });
         await expect(pngButton).toBeVisible();
@@ -142,10 +142,10 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Export CSV button downloads data table', async ({ page, plotContainer, downloadPromise }) => {
-        // Show mode bar by hovering over plot
+        // Show mode bar by hovering over the plot
         await plotContainer.hover();
         await page.waitForTimeout(500);
-        // Setup download handler
+        // Set up the download handler
         // Find and click the CSV download button
         const csvButton = page.getByRole('button', { name: 'Export CSV' });
         // await page.getByRole('button', { name: 'Export PNG' }).click();
@@ -170,7 +170,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             const modeButton = page.locator(`.modebar-btn[data-title*="${mode}"i]`).first();
             await expect(modeButton).toBeVisible();
             await modeButton.click();
-            // Verify plot remains interactive
+            // Verify that the plot remains interactive
             await expect(plotContainer).toBeVisible();
             await expect(page.locator('.draglayer')).toBeVisible();
         }
@@ -199,7 +199,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Plot interactions work', async ({ page, plotContainer, modeBar, zoomButton, resetButtonZoom, plotBoundingBox }) => {
-        // Wait for mode bar to appear
+        // Wait for the mode bar to appear
         await plotContainer.hover();
         await expect(modeBar).toBeVisible();
         // Get plot dimensions
@@ -209,7 +209,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         // Test zoom interaction
         await expect(zoomButton).toBeVisible();
         await zoomButton.click();
-        // Perform zoom action
+        // Perform the zoom action
         await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width / 4, plotBoundingBox.y + plotBoundingBox.height / 4);
         await page.mouse.down();
         await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width * 3/4, plotBoundingBox.y + plotBoundingBox.height * 3/4);
@@ -217,24 +217,8 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         // Reset axes
         await expect(resetButtonZoom).toBeVisible();
         await resetButtonZoom.click();
-        // Verify plot is still visible after interactions
+        // Verify that the plot is still visible after interactions
         await expect(plotContainer).toBeVisible();
-    });
-
-    test('Verify plot controls and options', async ({ page, plotContainer }) => {
-        // Move mouse over plot area and wait for controls
-        await plotContainer.hover();
-        await page.waitForTimeout(1000);
-        // Check for basic mode bar presence
-        await expect(page.locator('.modebar')).toBeVisible();
-        // Check for drag mode controls
-        await expect(page.locator('a[data-attr="dragmode"]').first()).toBeVisible();
-        // Check for zoom controls
-        await expect(page.locator('a[data-attr="zoom"]').first()).toBeVisible();
-        // Check for download option
-        await expect(page.locator('a[data-title*="Download"]').first()).toBeVisible();
-        // Check for autoscale/reset
-        await expect(page.locator('a[data-title*="Reset"]').first()).toBeVisible();
     });
 
     test('All interactive modes work', async ({ page, plotContainer, resetButton, plotBoundingBox }) => {
@@ -247,7 +231,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         const dragButton = page.locator('a[data-attr="dragmode"]').first();
         await expect(dragButton).toBeVisible();
         await dragButton.click();
-        // Verify plot remains interactive
+        // Verify that the plot remains interactive
         await expect(page.locator('.draglayer')).toBeVisible();
         // Try some interactions
         await page.mouse.move(plotBoundingBox.x + plotBoundingBox.width / 4, plotBoundingBox.y + plotBoundingBox.height / 4);
@@ -342,7 +326,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
     });
 
     test('Plot interactions interacting as expected', async ({ page, plotContainer, modeBar, zoomButton, resetButtonZoom, plotBoundingBox }) => {
-        // Show mode bar by hovering over plot
+        // Show the mode bar by hovering over the plot
         await plotContainer.hover();
         await expect(modeBar).toBeVisible();
         // Test zoom mode
@@ -362,7 +346,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         const panButton = page.locator('.modebar-btn[data-attr="dragmode"][data-val="pan"]');
         await expect(panButton).toBeVisible();
         await panButton.click();
-        // Verify plot remains interactive
+        // Verify that the plot remains interactive
         await expect(plotContainer).toBeVisible();
         await expect(page.locator('.draglayer')).toBeVisible();
     });
@@ -461,7 +445,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
 
     // Helper function for dropdown checks - checking that all dropdown filters all available
     async function checkDropdownOptions(page, dropdownLabel, expectedOptions) {
-        // Escape special regex characters in label
+        // Escape special regex characters in the label
         const safeLabel = dropdownLabel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         await page.locator('g').filter({ hasText: new RegExp(`^${safeLabel}$`) }).first().click();
         await page.waitForTimeout(500);
@@ -478,7 +462,7 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         for (const option of filterOptions) {
             // Click dropdown to show options
             await chartTypeDropdown.click();
-            // Wait for dropdown menu and select option
+            // Wait for the dropdown menu and select an option
             const dropdownMenu = page.locator('.updatemenu-item-text');
             const filterOption = dropdownMenu.getByText(option, { exact: true }).first();
             await filterOption.click();
