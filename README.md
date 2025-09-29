@@ -255,6 +255,6 @@
 
 1. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
 2. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
-3. Update [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/) and publish the page without the plotly JS embedded to speed up page loading.
+3. [Update NZ Governments Debt Trends 2002-2025 and publish the page without the plotly JS embedded to speed up page loading](https://github.com/badj/NZGovDebtTrends2002-2025/issues/4)
 
 ---
