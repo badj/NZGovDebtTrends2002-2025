@@ -166,8 +166,10 @@
    ```
 - Terminal output sample of a successful test run
   ```terminaloutput
+  NZGovDebtTrends2002-2025 (main) % npx playwright test --workers=10
+  
   Running 24 tests using 10 workers
-  24 passed (8.6s)
+  24 passed (7.9s)
   
   To open last HTML report run:
   
