@@ -375,11 +375,11 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(chartTypeDropdown).toBeVisible();
 
         const filterOptions = [
-            'All Metrics',
             '% GDP Only',
             'Amount Only',
             'Per Capita Only',
-            'Population Only'
+            'Population Only',
+            'All Metrics'
         ];
         // Test each filter option
         await testDropdownOptionsUpdatesChartTitle(page, chartTypeDropdown, plotContainer, filterOptions);
@@ -391,11 +391,11 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(chartTypeDropdown).toBeVisible();
 
         const filterOptions = [
-            'All Metrics',
             '% GDP Only',
             'Amount Only',
             'Per Capita Only',
-            'Population Only'
+            'Population Only',
+            'All Metrics'
         ];
         // Test each filter option
         await testDropdownOptions(page, chartTypeDropdown, plotContainer, filterOptions);
