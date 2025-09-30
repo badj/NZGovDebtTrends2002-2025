@@ -263,12 +263,11 @@
 
 **Enhancements to resolve:**
 
-1. [Create a test for chart subtitle changing based on Metrics selection](https://github.com/badj/NZGovDebtTrends2002-2025/issues/8)
-2. [Add toggle to set page to Dark or Light theme](https://github.com/badj/NZGovDebtTrends2002-2025/issues/7)
+1. [Add toggle to set page to Dark or Light theme](https://github.com/badj/NZGovDebtTrends2002-2025/issues/7)
 
 **Open Issues to resolve:**
 
-3. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
-4. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
+2. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
+3. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
 
 ---
