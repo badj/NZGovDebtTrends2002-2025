@@ -34,7 +34,7 @@
 
 - [Overview](#overview)
 - [Project information](#project-information)
-- [Playwright Automated Testing](#playwright-automated-testing)
+- [Playwright automated end-to-end tests](#playwright-automated-end-to-end-tests)
   - [Pre requisites](#pre-requisites)
   - [Setup](#setup)
   - [Run tests and generate the test run report to view test results](#run-tests-and-generate-the-test-run-report-to-view-the-test-results)
@@ -103,7 +103,7 @@
 
 ---
 
-### Playwright Automated Testing
+### Playwright automated end-to-end tests
 
 > - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
 >   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
