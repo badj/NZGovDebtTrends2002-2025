@@ -258,7 +258,7 @@
 
 [Open Issues to resolve:](https://github.com/badj/NZGovDebtTrends2002-2025/issues)
 
-1. Add Dark Theme gif to Readme.
+1. Add Dark Theme gif to Readme and tag new release for Dark Theme version.
 2. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
 3. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
 
