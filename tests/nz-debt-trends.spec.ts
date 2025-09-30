@@ -370,6 +370,21 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         ]);
     });
 
+    test('Metrics dropdown filter selection updates the chart title based on the metrics filter option selected', async ({ page, plotContainer  }) => {
+        const chartTypeDropdown = page.locator('.updatemenu-header-group').first();
+        await expect(chartTypeDropdown).toBeVisible();
+
+        const filterOptions = [
+            'All Metrics',
+            '% GDP Only',
+            'Amount Only',
+            'Per Capita Only',
+            'Population Only'
+        ];
+        // Test each filter option
+        await testDropdownOptionsUpdatesChartTitle(page, chartTypeDropdown, plotContainer, filterOptions);
+    });
+
     test('All Metrics selections update visualisation when filter options are changed', async ({ page, plotContainer }) => {
         // Wait for and click the first dropdown (Chart Type)
         const chartTypeDropdown = page.locator('.updatemenu-header-group').first();
@@ -470,6 +485,39 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
             await expect(plotContainer).toBeVisible();
             await expect(page.locator('.plot-container')).toBeVisible();
             await expect(page.locator('.scatterlayer').first()).toBeVisible();
+        }
+    }
+
+    // Helper function for dropdown checks - selecting a dropdown filter option updates the chart title
+    async function testDropdownOptionsUpdatesChartTitle(page, chartTypeDropdown, plotContainer, filterOptions) {
+        // Test each filter option
+        for (const option of filterOptions) {
+            // Click dropdown to show options
+            await chartTypeDropdown.click();
+
+            // Wait for the dropdown menu and select an option
+            const dropdownMenu = page.locator('.updatemenu-item-text');
+            const filterOption = dropdownMenu.getByText(option, { exact: true }).first();
+            await filterOption.click();
+
+            // Verify the visualisation updates
+            await expect(plotContainer).toBeVisible();
+
+            // Wait for the chart to update (give Plotly time to re-render)
+            await page.waitForTimeout(500);
+
+            // Check the chart title - use the correct locator for Plotly charts
+            // Try multiple possible selectors for Plotly title
+            const titleLocator = page.locator('.gtitle, .g-gtitle, text.gtitle').first();
+
+            // Wait for title to be visible
+            await expect(titleLocator).toBeVisible({ timeout: 10000 });
+
+            // Verify title contains the expected text with the current option
+            await expect(titleLocator).toContainText(
+                `New Zealand Government Debt Trends (2002-2025) - ${option}`,
+                { timeout: 5000 }
+            );
         }
     }
 });
