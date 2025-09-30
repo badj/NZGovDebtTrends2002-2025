@@ -4,25 +4,30 @@
 >
 > [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
 
-> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
-> - OR View the standalone HTML file in your browser - Dark theme:
+> - View the interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
+> - **To view the standalone HTML file in your browser - Dark theme:**
 >   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed-Dark-theme.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
 >   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed-Dark-theme.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
 >   - [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed-Dark-theme.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
-> - The data table and all export options work directly in the browser.
-
-> - OR View the standalone HTML file in your browser - Light theme:
+> 
+> - **To view the standalone HTML file in your browser - Light theme:**
 >   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
 >   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
 >   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
+> - The data table and all export options work directly in the browser.
 
-> ![chart-demo.gif](Images/chart-demo.gif)
-
+> **Integrated Automated end-to-end testing:** 
 > - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
->   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
->   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
+> - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
+> - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
 > [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
+
+> **Samples of the Interactive Graph - Dark and Light themes:**
+> 
+> ![chart-demo.gif](Images/chart-demo-dark.gif)
+> 
+> ![chart-demo.gif](Images/chart-demo-light.gif)
 
 ---
 ### Table of contents
@@ -256,12 +261,12 @@
 
 ### TODOs and Open Issues:
 
-**Enhancements:**
+**Enhancements to resolve:**
 
 1. [Add a Dark Theme gif to Readme](https://github.com/badj/NZGovDebtTrends2002-2025/issues/6)
 2. [Add toggle to set page to Dark or Light theme](https://github.com/badj/NZGovDebtTrends2002-2025/issues/7)
 
-[**Open Issues to resolve:**](https://github.com/badj/NZGovDebtTrends2002-2025/issues)
+**Open Issues to resolve:**
 
 3. [Decrease the test count after checking for duplicated coverage](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
 4. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
