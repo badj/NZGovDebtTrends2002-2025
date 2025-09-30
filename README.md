@@ -3,13 +3,18 @@
 > New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) charting generated with historical static data from various sources *(refer to data sources provided below table section)* and end-to-end test automation coverage with [Playwright Test Framework](https://playwright.dev/) support generated with [MCP(Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro).
 >
 > [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
-> 
-> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/) or
-> - View standalone HTML file in your browser:
+
+> - OR View standalone HTML file in your browser - Dark theme:
+    >   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed-Dark-theme.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - OR Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed-Dark-theme.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - OR [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed-Dark-theme.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
+> - The data table and all export options work directly in the browser.
+
+> - View as an Interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
+> - OR View standalone HTML file in your browser - Light theme:
 >   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
 >   - OR Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
 >   - OR [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
-> - The data table and all export options work directly in the browser.
 
 > ![chart-demo.gif](Images/chart-demo.gif)
 

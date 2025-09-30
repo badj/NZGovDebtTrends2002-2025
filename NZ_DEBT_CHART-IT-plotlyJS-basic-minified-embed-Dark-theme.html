@@ -61,68 +61,71 @@
         body {
             background-color: #111;
             color: #f0f0f0;
-            font-family: 'Open Sans', 'verdana','arial', 'sans-serif';
+            font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';
         }
-        button {
-            background-color: #222;
-            color: #f0f0f0;
-            border: 1px solid #444;
-            padding: 6px 12px;
-            margin: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-        }
-        th, td {
-            border: 1px solid #444;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #222;
-        }
-        tr:nth-child(even) {
-            background-color: #2a2a2a;
-        }
-        #references {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #1a1a1a;
-            border: 1px solid #444;
-            color: #f0f0f0;
-        }
-        #references a {
-            color: #66aaff;
-        }
-        /* Dropdown styles to override Plotly light theme to use a dark theme*/
-        .plotly .updatemenu-item-rect {
-            background-color: #222 !important;
-            color: #f0f0f0 !important;
-            fill: #222 !important;
-        }
-        .plotly .updatemenu-item-rect:hover {
-            background-color: #333 !important;
-            color: #f0f0f0 !important;
-            fill: #666666 !important;
-        }
-        /* Fix modebar (top-right icons like zoom, pan, reset) */
-        .plotly .modebar-container {
-            background: #111 !important;
-        }
-        .plotly .modebar-btn {
-            color: #f0f0f0 !important;
-        }
-        .plotly .modebar-btn:hover {
-            background: #333 !important;
-        }
+
+button {
+    background-color: #222;
+    color: #f0f0f0;
+    border: 1px solid #444;
+    padding: 6px 12px;
+    margin: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+th, td {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #222;
+}
+tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+#references {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #f0f0f0;
+}
+#references a {
+    color: #66aaff;
+}
+/* Dropdown styles to override Plotly light theme to use a dark theme*/
+.plotly .updatemenu-item-rect {
+    background-color: #222 !important;
+    color: #f0f0f0 !important;
+    fill: #222 !important;
+}
+.plotly .updatemenu-item-rect:hover {
+    background-color: #333 !important;
+    color: #f0f0f0 !important;
+    fill: #666666 !important;
+}
+/* Fix modebar (top-right icons like zoom, pan, reset) */
+.plotly .modebar-container {
+    background: #111 !important;
+}
+.plotly .modebar-btn {
+    color: #f0f0f0 !important;
+}
+.plotly .modebar-btn:hover {
+    background: #333 !important;
+}
 </style>
 </head>
 <body>
@@ -361,63 +364,57 @@
         { label: 'Export CSV', method: 'animate', args: [null, { frame: { duration: 0 }, transition: { duration: 0 }, mode: 'immediate', fromcurrent: true }], trigger: downloadCSV }
     ];
 
-    const layout = {
-        title: {
-            text: '<b>[ New Zealand Government Debt Trends (2002-2025) - All Metrics ]</b>',
-            y: 0.05,
-            x: 0.5,
-            xanchor: 'center',
-            yanchor: 'top',
-            font: { color: '#f0f0f0' }
-        },
-        paper_bgcolor: '#111111',
-        plot_bgcolor: '#111111',
-        font: { color: '#f0f0f0' },
-        xaxis: {
-            title: 'Year',
-            rangeslider: { visible: true, bgcolor: '#222' },
-            gridcolor: '#333',
-            zerolinecolor: '#555'
-        },
-        yaxis: {
-            title: 'Debt (% of GDP)',
-            side: 'left',
-            gridcolor: '#333',
-            zerolinecolor: '#555'
-        },
-        yaxis2: {
-            title: 'Debt Amount (NZD billions) / Per Capita (NZD) / Population (M)',
-            side: 'right',
-            overlaying: 'y',
-            type: 'linear',
-            gridcolor: '#333',
-            zerolinecolor: '#555'
-        },
-        hoverlabel: {
-            bgcolor: '#222',
-            font: { color: '#fff' }
-        },
-        annotations: [
-            { x: 2008, y: 36.0, xref: 'x', yref: 'y', text: 'John Key', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
-            { x: 2016, y: 34.5, xref: 'x', yref: 'y', text: 'Bill English', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
-            { x: 2017, y: 31.7, xref: 'x', yref: 'y', text: 'Jacinda Ardern', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
-            { x: 2023, y: 47.0, xref: 'x', yref: 'y', text: 'Christopher Luxon', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } }
-        ],
-        height: 700,
-        updatemenus: [
-            { buttons: metricsButtons, direction: 'down', showactive: true, x: 0.01, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
-            { buttons: partyButtons, direction: 'down', showactive: true, x: 0.21, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
-            { buttons: pmButtons, direction: 'down', showactive: true, x: 0.41, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
-            { buttons: populationButtons, direction: 'down', showactive: true, x: 0.61, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
-            { buttons: scaleButtons, direction: 'down', showactive: true, x: 0.81, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } }
-        ],
-        legend: {
-            x: 0.01,
-            y: 0.99,
-            font: {
-                color: '#f0f0f0' }
-        }
-    };
+
+const layout = {
+    title: {
+        text: '<b>[ New Zealand Government Debt Trends (2002-2025) - All Metrics ]</b>',
+        y: 0.05,
+        x: 0.5,
+        xanchor: 'center',
+        yanchor: 'top',
+        font: { color: '#f0f0f0' }
+    },
+    paper_bgcolor: '#111111',
+    plot_bgcolor: '#111111',
+    font: { color: '#f0f0f0' },
+    xaxis: {
+        title: 'Year',
+        rangeslider: { visible: true, bgcolor: '#222' },
+        gridcolor: '#333',
+        zerolinecolor: '#555'
+    },
+    yaxis: {
+        title: 'Debt (% of GDP)',
+        side: 'left',
+        gridcolor: '#333',
+        zerolinecolor: '#555'
+    },
+    yaxis2: {
+        title: 'Debt Amount (NZD billions) / Per Capita (NZD) / Population (M)',
+        side: 'right',
+        overlaying: 'y',
+        type: 'linear',
+        gridcolor: '#333',
+        zerolinecolor: '#555'
+    },
+    hoverlabel: { bgcolor: '#222', font: { color: '#fff' } },
+    annotations: [
+        { x: 2008, y: 36.0, xref: 'x', yref: 'y', text: 'John Key', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
+        { x: 2016, y: 34.5, xref: 'x', yref: 'y', text: 'Bill English', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
+        { x: 2017, y: 31.7, xref: 'x', yref: 'y', text: 'Jacinda Ardern', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
+        { x: 2023, y: 47.0, xref: 'x', yref: 'y', text: 'Christopher Luxon', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } }
+    ],
+    height: 700,
+    updatemenus: [
+        { buttons: metricsButtons, direction: 'down', showactive: true, x: 0.01, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+        { buttons: partyButtons, direction: 'down', showactive: true, x: 0.21, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+        { buttons: pmButtons, direction: 'down', showactive: true, x: 0.41, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+        { buttons: populationButtons, direction: 'down', showactive: true, x: 0.61, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+        { buttons: scaleButtons, direction: 'down', showactive: true, x: 0.81, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } }
+    ],
+    legend: { x: 0.01, y: 0.99, font: { color: '#f0f0f0' } }
+};
+
 
     Plotly.newPlot('debt-chart', traces, layout).then(() => {
         updateTable(); // Initialize table with all data

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NZ Government Debt Interactive Chart with Table and References</title>
+<!--    <script src="https://cdn.plot.ly/plotly-basic-3.1.0.min.js"></script>-->
+<!--    <script src="https://cdn.plot.ly/plotly-basic-latest.min.js"></script>-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        #references {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        #references h3 {
+            margin-top: 0;
+        }
+        #references ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        body {
+            background-color: #111;
+            color: #f0f0f0;
+            font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';
+        }
+        button {
+            background-color: #222;
+            color: #f0f0f0;
+            border: 1px solid #444;
+            padding: 6px 12px;
+            margin: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #222;
+        }
+        tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+        #references {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            color: #f0f0f0;
+        }
+        #references a {
+            color: #66aaff;
+        }
+        /* Dropdown styles to override Plotly light theme to use a dark theme*/
+        .plotly .updatemenu-item-rect {
+            background-color: #222 !important;
+            color: #f0f0f0 !important;
+            fill: #222 !important;
+        }
+        .plotly .updatemenu-item-rect:hover {
+            background-color: #333 !important;
+            color: #f0f0f0 !important;
+            fill: #666666 !important;
+        }
+        /* Fix modebar (top-right icons like zoom, pan, reset) */
+        .plotly .modebar-container {
+            background: #111 !important;
+        }
+        .plotly .modebar-btn {
+            color: #f0f0f0 !important
+        }
+        .plotly .modebar-btn:hover {
+            background: #333 !important;
+        }
+    </style>
+</head>
+<body>
+<!-- Add these above your chart div -->
+<button id="export-png-btn">Export PNG</button>
+<button id="export-csv-btn">Export CSV</button>
+<div id="debt-chart" style="width:100%; height:700px;"></div>
+<table id="data-table" style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">
+    <thead>
+    <tr>
+        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Year</th>
+        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Debt (% of GDP)</th>
+        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Debt Amount (NZD billions)</th>
+        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Per Capita (NZD)</th>
+        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Prime Minister</th>
+        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Ruling Political Party</th>
+        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Population Count</th>
+    </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+</table>
+<div id="references" style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">
+    <h3>Data Sources</h3>
+    <ul>
+        <li><a href="https://www.stats.govt.nz/topics/population" target="_blank">Statistics New Zealand - Population Data</a>: Population counts for New Zealand from 2002 to 2025.</li>
+        <li><a href="https://www.treasury.govt.nz/publications" target="_blank">New Zealand Treasury - Government Debt Data</a>: Data on government debt, including Debt (% of GDP) and Debt Amount (NZD billions).</li>
+        <li><a href="https://www.rbnz.govt.nz/statistics" target="_blank">Reserve Bank of New Zealand - Economic Indicators</a>: Additional economic data supporting debt per capita calculations.</li>
+        <li><a href="https://en.wikipedia.org/wiki/List_of_prime_ministers_of_New_Zealand" target="_blank">Wikipedia - List of Prime Ministers of New Zealand</a>: Historical data on Prime Ministers and Ruling Political Parties.</li>
+        <li><a href="https://fred.stlouisfed.org/series/DEBTTLNZA188A" target="_blank">Central government debt, total (% of GDP) for New Zealand - FRED</a>:Graph and download economic data for Central government debt, total (% of GDP) for New Zealand (DEBTTLNZA188A) from 2002 to 2022 about New Zealand, debt, ...</li>
+        <li><a href="https://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS?locations=NZ" target="_blank">Central government debt, total (% of GDP) - New Zealand | Data</a>:Central government debt, total (% of GDP) - New Zealand. Government Finance Statistics Yearbook and data files, International Monetary Fund ( IMF ). License : ...</li>
+        <li><a href="https://ceicdata.com" target="_blank">New Zealand National Government Debt, 2006 – 2025 | CEIC Data</a>:New Zealand National Government Debt reached 111.4 USD bn in Dec 2024, compared with 118.8 USD bn in the previous quarter. See the table below for more data.</li>
+        <li><a href="https://www.macrotrends.net/global-metrics/countries/nzl/new-zealand/national-debt" target="_blank">New Zealand National Debt | Historical Chart & Data - Macrotrends</a>:New Zealand national debt for 2021 was 184.21 billion US dollars, a 21.78% increase from 2020. · New Zealand national debt for 2020 was 151.27 billion US dollars ...</li>
+        <li><a href="https://tradingeconomics.com/new-zealand/government-debt" target="_blank">New Zealand Government Net Debt - Trading Economics</a>:Government Debt in New Zealand averaged 35558.04 NZD Million from 1972 until 2024, reaching an all time high of 175464.00 NZD Million in 2024.</li>
+        <li><a href="https://imf.org" target="_blank">Global Debt Database - Central Government Debt</a>:New Zealand 45.77. Nicaragua 41.68. Niger 56.57. Nigeria 42.95. North Macedonia ... Add an item to the chart. Reset. Sweden · Sweden. Selected Country Data</li>
+        <li><a href="https://tradingeconomics.com/new-zealand/government-debt-to-gdp" target="_blank">New Zealand Government Net Debt to GDP - Trading Economics</a>:Government Debt to GDP in New Zealand averaged 24.68 percent of GDP from 1972 until 2024, reaching an all time high of 54.80 percent of GDP in 1992 and a record ...</li>
+        <li><a href="https://ceicdata.com" target="_blank">New Zealand Government Debt: % of GDP, 2006 – 2025 | CEIC Data</a>:New Zealand Government debt accounted for 44.3 % of the country's Nominal GDP in Sep 2024, compared with the ratio of 41.9 % in the previous quarter.</li>
+        <li><a href="https://ycharts.com/indicators/new_zealand_central_government_debt_gdp" target="_blank">New Zealand Central Government Debt (Yearly) - Historical D…</a>:New Zealand Central Government Debt is at 53.96%, compared to 51.30% last year. This is higher than the long term average of 42.15%.</li>
+        <li><a href="https://figure.nz/chart/U2DMJfsT2DJyLUki" target="_blank">Gross debt in New Zealand - Figure.NZ</a>:Gross debt in New Zealand. Year ended June 1997–2024, NZD billions. Chart. Table.</li>
+        <li><a href="https://www.macrotrends.net/global-metrics/countries/nzl/new-zealand/debt-to-gdp-ratio" target="_blank">New Zealand Debt to GDP Ratio | Historical Chart & Data</a>:New Zealand debt to gdp ratio for 2021 was 51.37%, a 5.25% increase from 2020. · New Zealand debt to gdp ratio for 2020 was 46.12%, a 13.33% increase from 2019.</li>
+        <li><a href="https://www.imf.org/external/datamapper/profile/NZL" target="_blank">New Zealand - IMF DataMapper</a>:Government revenue, percent of GDP · Government expenditure, percent of GDP · Government primary expenditure, percent of GDP · Interest paid on public debt, ...</li>
+        <li><a href="https://www.worldeconomics.com/GrossDomesticProduct/debt-to-gdp-ratio/NewZealand.aspx" target="_blank">New Zealand Debt-to-GDP Ratio: 48.6% - World Economics</a>:The economy of New Zealand is reported as having a debt-to-GDP ratio of 48.6%, indicating New Zealand's debt level is $144.90 Billion.</li>
+        <li><a href="https://en.macromicro.me/collections/3304/global-bebt-to-gdp/26341/newzealand-and-australia-government-debt-share-of-gdp" target="_blank">Australia & New Zealand - Government Gross Debt to GDP (%)</a>:Gross government debt denotes all accrued external financial obligations. The ratio of gross debt to GDP reflects the country's financial health, the higher ...</li>
+        <li><a href="https://en.wikipedia.org/wiki/Economy_of_New_Zealand" target="_blank">Economy of New Zealand - Wikipedia</a>:Between 1984 and 2006, net external foreign debt increased 11-fold, to NZ$182 billion. As of 2018 gross core crown debt was NZ$84,524 million or 29.5% of GDP ...</li>
+        <li><a href="https://www.statista.com/statistics/436529/national-debt-of-new-zealand-in-relation-to-gross-domestic-product-gdp/" target="_blank">Ratio of national debt to GDP New Zealand 2030| Statista</a>:In 2024, the ratio of national debt to gross domestic product (GDP) of New Zealand was estimated at about 51.15 percent. Between 1985 and 2024, the figure dropped by approximately 12.98 percentage points, though the decline followed an uneven course rather than a steady trajectory.</li>
+        <li><a href="https://www.stats.govt.nz/information-releases/government-finance-statistics-general-government-year-ended-june-2024/" target="_blank">Government finance statistics (general government): Year ended June 2024 | Stats NZ</a>:Government finance statistics</li>
+        <li><a href="https://www.treasury.govt.nz/publications/year-end/financial-statements-2024" target="_blank">Financial Statements of the Government of New Zealand for the Year Ended 30 June 2024 | The Treasury New Zealand</a>:It is committed to reducing core Crown expenses as a proportion of GDP and returning to an OBEGAL surplus. With prudent control of spending, the Government does not see any need to seek major additional sources of revenue. The Financial Statements also show that net core Crown debt reached $175.5 billion at 30 June 2024 (42.5 per cent of GDP) – an increase of around $20 billion over the previous year.</li>
+        <li><a href="https://www.focus-economics.com/country-indicator/new-zealand/public-debt/" target="_blank">New Zealand Public Debt (% of GDP) - FocusEconomics</a>:Note: This chart displays Public Debt (% of GDP) for New Zealand from 2024 to 2023.</li>
+        <li><a href="https://www.worldeconomics.com/Debt/NewZealand.aspx" target="_blank">New Zealand's Debt to GDP Ratio | 2025 | Economic Data | World Economics</a>:New Zealand's Debt to GDP Ratio</li>
+        <li><a href="https://en.wikipedia.org/wiki/List_of_countries_by_government_debt" target="_blank">List of countries by government debt - Wikipedia</a>:For context on the magnitude of the debt numbers, European Union member countries have an agreement, the Stability and Growth Pact (SGP), to maintain a general government gross debt of no more than 60% of GDP.</li>
+        <li><a href="https://tradingeconomics.com/country-list/government-debt-to-gdp" target="_blank">Country List Government Debt to GDP</a>:This page displays a table with actual values, consensus figures, forecasts, statistics and historical data charts for - Country List Government Debt to GDP. This page provides values for Government Debt to GDP reported in several countries. The table has current values for Government Debt to GDP, previous releases, historical highs and record lows, release frequency, reported unit and currency plus links to historical data charts.</li>
+        <li><a href="https://fred.stlouisfed.org/data/DEBTTLNZA188A" target="_blank">Table Data - Central government debt, total (% of GDP) for New Zealand | FRED | St. Louis Fed</a>:Central government debt</li>
+        <li><a href="https://take-profit.org/en/statistics/government-debt-to-gdp/new-zealand/" target="_blank">New Zealand External & Government Debt to GDP 2024-2025 | Take-profit.org</a>:Forecast as of 09.01.2025 ... Government Debt to GDP in New Zealand increased to 35.9 % in 2022. The maximum level was 54.8 % and minimum was 4.4 % Data published Yearly by Treasury. ... External Debt in New Zealand increased to 331394 NZD Million (199.659 B USD) in the second quarter of 2023. The maximum debt was 305121 NZD Million and minimum was 67673 NZD Million · Data published Quarterly by Central Bank.</li>
+        <li><a href="https://www.imf.org/external/datamapper/NGDP_RPCH@WEO/OEMDC/ADVEC/WEOWORLD" target="_blank">World Economic Outlook (April 2025) - Real GDP growth</a>:World Economic Outlook</li>
+        <li><a href="https://www.statista.com/statistics/436523/ratio-of-government-expenditure-to-gross-domestic-product-gdp-in-new-zealand/" target="_blank">New Zealand - ratio of government expenditure to gross domestic product (GDP) 2029 | Statista</a>:The ratio of government expenditure to GDP in New Zealand was forecast to continuously decrease between 2024 and 2029 by in total 5.1 percentage points. After the fifth consecutive decreasing year, the ratio is estimated to reach 37.15 percent and therefore a new minimum in 2029.</li>
+        <li><a href="https://www.imf.org/en/News/Articles/2025/03/11/cs-031125-new-zealand-staff-concluding-statement-of-the-2025-article-iv-mission" target="_blank">New Zealand: Staff Concluding Statement of the 2025 Article IV Mission</a>:Higher import prices and the weaker New Zealand dollar are likely to cause a temporary uptick in inflation in 2025, but the negative output gap will help keep headline inflation within the target band. The current account is expected to improve further in 2025 supported by favorable agriculture commodity prices, gradually aligning with the historical average deficit of 3½ to 4 percent of GDP.</li>
+        <li><a href="https://www.imf.org/en/Countries/NZL" target="_blank">New Zealand and the IMF</a>:The last Article IV Executive Board Consultation was on May 19, 2025.</li>
+        <li><a href="https://www.imf.org/en/News/Articles/2025/05/23/pr25159-imf-executive-board-concludes-2025-article-iv-consultation-with-new-zealand" target="_blank">IMF Executive Board Concludes 2025 Article IV Consultation with New Zealand</a>:Washington, DC – May 26, 2025: The Executive Board of the International Monetary Fund (IMF) concluded the Article IV consultation [1] with New Zealand on May 19, 2025. Tight monetary policy has helped bring inflation back to target, but at the expense of growth. Real GDP contracted by 0.5 percent y/y in 2024, as investment fell by 4.1 percent y/y, household consumption stagnated.</li>
+    </ul>
+</div>
+<script>
+    const data = {
+        Year: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+        'Debt (% of GDP)': [32.8, 48.3, 43.9, 44.2, 43.0, 37.0, 36.0, 31.9, 34.7, 38.5, 39.7, 36.4, 34.3, 34.1, 34.5, 31.7, 29.5, 32.5, 46.0, 51.4, 54.0, 47.0, 51.2, 50.2],
+        'Debt Amount (NZD billions)': [35.0, 58.0, 58.0, 64.0, 70.0, 68.0, 68.0, 64.0, 70.0, 85.0, 90.0, 90.0, 90.0, 95.0, 102.0, 102.0, 105.0, 115.0, 155.0, 170.0, 175.0, 155.3, 175.5, 185.0],
+        'Per Capita (NZD)': [8900, 14500, 14300, 15600, 16800, 16000, 15800, 14600, 15700, 18800, 19700, 19400, 19100, 19900, 21100, 20700, 21000, 22700, 30200, 32800, 33500, 29400, 32900, 34300],
+        'Prime Minister': ['Helen Clark', 'Helen Clark', 'Helen Clark', 'Helen Clark', 'Helen Clark', 'Helen Clark', 'John Key', 'John Key', 'John Key', 'John Key', 'John Key', 'John Key', 'John Key', 'John Key', 'Bill English', 'Jacinda Ardern', 'Jacinda Ardern', 'Jacinda Ardern', 'Jacinda Ardern', 'Jacinda Ardern', 'Jacinda Ardern', 'Christopher Luxon', 'Christopher Luxon', 'Christopher Luxon'],
+        'Ruling Political Party': ['Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'National', 'National', 'National'],
+        'Population Count': [3932584, 4000000, 4055944, 4102564, 4166667, 4250000, 4303797, 4383562, 4458599, 4521277, 4568528, 4639175, 4712042, 4773869, 4834123, 4927536, 5000000, 5066079, 5132450, 5182927, 5223881, 5282313, 5334347, 5393586]
+    };
+
+    // Convert Population Count to millions for better scaling
+    const populationMillions = data['Population Count'].map(pop => pop / 1000000);
+
+    // Base traces (one for each metric)
+    const traces = [
+        {
+            x: data.Year,
+            y: data['Debt (% of GDP)'],
+            mode: 'lines+markers',
+            name: 'Debt (% of GDP)',
+            type: 'scatter',
+            line: { width: 2 },
+            marker: { size: 6 },
+            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            hovertemplate: '<b>Year: %{x}</b><br>' +
+                'Debt (% GDP): %{y:.1f}%<br>' +
+                'Amount: NZD %{customdata[0]}B<br>' +
+                'Per Capita: NZD %{customdata[1]}<br>' +
+                'PM: %{customdata[2]}<br>' +
+                'Party: %{customdata[3]}<br>' +
+                'Population: %{customdata[4]}<br>' +
+                'Population (M): %{customdata[6]:.2f}M<extra></extra>',
+            yaxis: 'y'
+        },
+        {
+            x: data.Year,
+            y: data['Debt Amount (NZD billions)'],
+            mode: 'lines+markers',
+            name: 'Debt Amount (NZD billions)',
+            type: 'scatter',
+            line: { width: 2, dash: 'dash' },
+            marker: { size: 6 },
+            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            hovertemplate: '<b>Year: %{x}</b><br>' +
+                'Debt (% GDP): %{customdata[5]:.1f}%<br>' +
+                'Amount: NZD %{y}B<br>' +
+                'Per Capita: NZD %{customdata[1]}<br>' +
+                'PM: %{customdata[2]}<br>' +
+                'Party: %{customdata[3]}<br>' +
+                'Population: %{customdata[4]}<br>' +
+                'Population (M): %{customdata[6]:.2f}M<extra></extra>',
+            yaxis: 'y2'
+        },
+        {
+            x: data.Year,
+            y: data['Per Capita (NZD)'],
+            mode: 'lines+markers',
+            name: 'Per Capita (NZD)',
+            type: 'scatter',
+            line: { width: 2, dash: 'dot' },
+            marker: { size: 6 },
+            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            hovertemplate: '<b>Year: %{x}</b><br>' +
+                'Debt (% GDP): %{customdata[5]:.1f}%<br>' +
+                'Amount: NZD %{customdata[0]}B<br>' +
+                'Per Capita: NZD %{y}<br>' +
+                'PM: %{customdata[2]}<br>' +
+                'Party: %{customdata[3]}<br>' +
+                'Population: %{customdata[4]}<br>' +
+                'Population (M): %{customdata[6]:.2f}M<extra></extra>',
+            yaxis: 'y2'
+        },
+        {
+            x: data.Year,
+            y: populationMillions,
+            mode: 'lines+markers',
+            name: 'Population (millions)',
+            type: 'scatter',
+            line: { color: 'green', width: 2 },
+            marker: { size: 6, color: 'green' },
+            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            hovertemplate: '<b>Year: %{x}</b><br>' +
+                'Debt (% GDP): %{customdata[5]:.1f}%<br>' +
+                'Amount: NZD %{customdata[0]}B<br>' +
+                'Per Capita: NZD %{customdata[1]}<br>' +
+                'PM: %{customdata[2]}<br>' +
+                'Party: %{customdata[3]}<br>' +
+                'Population: %{customdata[4]}<br>' +
+                'Population (M): %{y:.2f}M<extra></extra>',
+            yaxis: 'y2'
+        }
+    ];
+
+    // Function to create CSV data
+    function downloadCSV() {
+        const csvRows = ['Year,Debt (% of GDP),Debt Amount (NZD billions),Per Capita (NZD),Prime Minister,Ruling Political Party,Population Count'];
+        data.Year.forEach((year, i) => {
+            csvRows.push(`${year},${data['Debt (% of GDP)'][i]},${data['Debt Amount (NZD billions)'][i]},${data['Per Capita (NZD)'][i]},${data['Prime Minister'][i]},${data['Ruling Political Party'][i]},${data['Population Count'][i]}`);
+        });
+        const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', 'nz_government_debt_data.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Function to update data table
+    function updateTable() {
+        const tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = '';
+        const pmFilter = document.querySelector('.updatemenu-item-active[data-label*="PMs"]')?.getAttribute('data-label') || 'All PMs';
+        const partyFilter = document.querySelector('.updatemenu-item-active[data-label*="Parties"]')?.getAttribute('data-label') || 'All Parties';
+        let filteredIndices = data.Year.map((_, i) => i);
+
+        if (pmFilter !== 'All PMs') {
+            filteredIndices = filteredIndices.filter(i => data['Prime Minister'][i] === pmFilter);
+        }
+        if (partyFilter !== 'All Parties') {
+            filteredIndices = filteredIndices.filter(i => data['Ruling Political Party'][i] === (partyFilter === 'Labour Only' ? 'Labour' : 'National'));
+        }
+
+        filteredIndices.forEach(i => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${data.Year[i]}</td><td>${data['Debt (% of GDP)'][i]}</td><td>${data['Debt Amount (NZD billions)'][i]}</td><td>${data['Per Capita (NZD)'][i]}</td><td>${data['Prime Minister'][i]}</td><td>${data['Ruling Political Party'][i]}</td><td>${data['Population Count'][i]}</td>`;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Metrics dropdown buttons
+    const metricsButtons = [
+        { label: 'All Metrics', method: 'update', args: [{ visible: [true, true, true, true] }, { title: 'New Zealand Government Debt Trends (2002-2025) - All Metrics' }] },
+        { label: '% GDP Only', method: 'update', args: [{ visible: [true, false, false, false] }, { title: 'New Zealand Government Debt Trends (2002-2025) - % GDP Only' }] },
+        { label: 'Amount Only', method: 'update', args: [{ visible: [false, true, false, false] }, { title: 'New Zealand Government Debt Trends (2002-2025) - Amount Only' }] },
+        { label: 'Per Capita Only', method: 'update', args: [{ visible: [false, false, true, false] }, { title: 'New Zealand Government Debt Trends (2002-2025) - Per Capita Only' }] },
+        { label: 'Population Only', method: 'update', args: [{ visible: [false, false, false, true] }, { title: 'New Zealand Government Debt Trends (2002-2025) - Population Only' }] }
+    ];
+
+    // Party filter dropdown buttons (applies to traces 0-2)
+    const partyButtons = [
+        { label: 'All Parties', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
+        { label: 'Labour Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
+        { label: 'National Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] }
+    ];
+
+    // PM filter dropdown buttons (applies to traces 0-2)
+    const pmButtons = [
+        { label: 'All PMs', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
+        { label: 'Helen Clark', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
+        { label: 'John Key', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
+        { label: 'Bill English', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
+        { label: 'Jacinda Ardern', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
+        { label: 'Christopher Luxon', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] }
+    ];
+
+    // Population color toggle dropdown buttons
+    const populationButtons = [
+        { label: 'Green (Default)', method: 'restyle', args: [{ 'line.color[3]': 'green', 'marker.color[3]': 'green' }, [3]] },
+        { label: 'Orange', method: 'restyle', args: [{ 'line.color[3]': 'orange', 'marker.color[3]': 'orange' }, [3]] },
+        { label: 'Purple', method: 'restyle', args: [{ 'line.color[3]': 'purple', 'marker.color[3]': 'purple' }, [3]] },
+        { label: 'Hide Population', method: 'update', args: [{ visible: [true, true, true, false] }, {}] }
+    ];
+
+    // Scale toggle dropdown buttons (applies to yaxis2)
+    const scaleButtons = [
+        { label: 'Linear Scale', method: 'update', args: [{ 'yaxis2.type': 'linear' }, { 'yaxis2.type': 'linear' }] },
+        { label: 'Log Scale', method: 'update', args: [{ 'yaxis2.type': 'log' }, { 'yaxis2.type': 'log' }] }
+    ];
+
+    // Export options dropdown buttons //
+    // Ignored/Disabled to fix download issues to use download buttons instead loaded top left of the page - the download dropdown has been disabled!
+    const exportButtons = [
+        { label: 'Export PNG', method: 'animate', args: [null, { frame: { duration: 0 }, transition: { duration: 0 }, mode: 'immediate', fromcurrent: true, layout: { 'toImageButtonOptions': { format: 'png', filename: 'nz_debt_chart', height: 700, width: 1200, scale: 1 } },} ], trigger: () => { Plotly.downloadImage(document.getElementById('debt-chart'), { format: 'png', filename: 'nz_debt_chart', height: 700, width: 1200, scale: 1 }); } },
+        { label: 'Export CSV', method: 'animate', args: [null, { frame: { duration: 0 }, transition: { duration: 0 }, mode: 'immediate', fromcurrent: true }], trigger: downloadCSV }
+    ];
+
+
+    const layout = {
+        title: {
+            text: '<b>[ New Zealand Government Debt Trends (2002-2025) - All Metrics ]</b>',
+            y: 0.05,
+            x: 0.5,
+            xanchor: 'center',
+            yanchor: 'top',
+            font: { color: '#f0f0f0' }
+        },
+        paper_bgcolor: '#111111',
+        plot_bgcolor: '#111111',
+        font: { color: '#f0f0f0' },
+        xaxis: {
+            title: 'Year',
+            rangeslider: { visible: true, bgcolor: '#222' },
+            gridcolor: '#333',
+            zerolinecolor: '#555'
+        },
+        yaxis: {
+            title: 'Debt (% of GDP)',
+            side: 'left',
+            gridcolor: '#333',
+            zerolinecolor: '#555'
+        },
+        yaxis2: {
+            title: 'Debt Amount (NZD billions) / Per Capita (NZD) / Population (M)',
+            side: 'right',
+            overlaying: 'y',
+            type: 'linear',
+            gridcolor: '#333',
+            zerolinecolor: '#555'
+        },
+        hoverlabel: { bgcolor: '#222', font: { color: '#fff' } },
+        annotations: [
+            { x: 2008, y: 36.0, xref: 'x', yref: 'y', text: 'John Key', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
+            { x: 2016, y: 34.5, xref: 'x', yref: 'y', text: 'Bill English', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
+            { x: 2017, y: 31.7, xref: 'x', yref: 'y', text: 'Jacinda Ardern', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } },
+            { x: 2023, y: 47.0, xref: 'x', yref: 'y', text: 'Christopher Luxon', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: '#222', font: { color: '#f0f0f0' } }
+        ],
+        height: 700,
+        updatemenus: [
+            { buttons: metricsButtons, direction: 'down', showactive: true, x: 0.01, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+            { buttons: partyButtons, direction: 'down', showactive: true, x: 0.21, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+            { buttons: pmButtons, direction: 'down', showactive: true, x: 0.41, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+            { buttons: populationButtons, direction: 'down', showactive: true, x: 0.61, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } },
+            { buttons: scaleButtons, direction: 'down', showactive: true, x: 0.81, xanchor: 'left', y: 1.15, yanchor: 'top', bgcolor: '#222', bordercolor: '#444', font: { color: '#f0f0f0' } }
+        ],
+        legend: { x: 0.01, y: 0.99, font: { color: '#f0f0f0' } }
+    };
+
+    Plotly.newPlot('debt-chart', traces, layout).then(() => {
+        updateTable(); // Initialize table with all data
+        });
+
+        document.getElementById('export-png-btn').onclick = function() {
+            Plotly.downloadImage(document.getElementById('debt-chart'), {
+                format: 'png',
+                filename: 'nz_debt_chart',
+                height: 700,
+                width: 1200,
+                scale: 1
+            });
+        };
+
+        document.getElementById('export-csv-btn').onclick = downloadCSV;
+
+</script>
+</body>
+</html>
