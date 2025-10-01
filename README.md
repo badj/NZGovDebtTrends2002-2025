@@ -217,7 +217,7 @@
    }
    ```
 
-2. In the project IDE folder [an autoApprove settings file waa added](.idea/settings.json) called ```settings.json```
+2. In the project IDE folder [an autoApprove settings file was added](.idea/settings.json) called ```settings.json```
 
 - By adding this code, no 'click to continue' is required each time, allowing the agent to continue on its own.
 
