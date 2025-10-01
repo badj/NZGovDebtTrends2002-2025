@@ -2,55 +2,69 @@
 
 > New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) charting generated with historical static data from various sources *(refer to data sources provided below table section)* and end-to-end test automation coverage with [Playwright Test Framework](https://playwright.dev/) support generated with [MCP(Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro).
 >
-> [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
-
-> - View the interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
-> - **To view the standalone HTML file in your browser - Dark theme:**
->   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed-Dark-theme.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed-Dark-theme.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed-Dark-theme.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
+> View the interactive page hosted on GitHub Pages: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
 > 
-> - **To view the standalone HTML file in your browser - Light theme:**
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
-> - The data table and all export options work directly in the browser.
-
-> **Integrated Automated end-to-end testing:** 
-> - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
-> - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
-> - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
->
-> [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
-
-> **Samples of the Interactive Graph - Dark and Light themes:**
+> **Demo samples of the interactive graph for Dark and Light themes:**
 > 
 > ![chart-demo.gif](Images/chart-demo-dark.gif)
-> 
+>
 > ![chart-demo.gif](Images/chart-demo-light.gif)
 
 ---
+
 ### Table of contents
 
 - [Overview](#overview)
-- [Project information](#project-information)
+- [Features of the Interactive Graph](#features-of-the-interactive-graph)
 - [Playwright automated end-to-end tests](#playwright-automated-end-to-end-tests)
-  - [Pre requisites](#pre-requisites)
-  - [Setup](#setup)
-  - [Run tests and generate the test run report to view test results](#run-tests-and-generate-the-test-run-report-to-view-the-test-results)
-  - [CICD Integration](#cicd-integration)
-  - [Playwright MCP integration with Claude Sonnet and Chat-GPT agents](#playwright-mcp-integration-with-claude-sonnet-and-chat-gpt-agents)
+    - [Pre requisites](#pre-requisites)
+    - [Setup](#setup)
+    - [Run tests and generate the test run report to view test results](#run-tests-and-generate-the-test-run-report-to-view-the-test-results)
+    - [CICD Integration](#cicd-integration)
+    - [Playwright MCP integration with Claude Sonnet and Chat-GPT agents](#playwright-mcp-integration-with-claude-sonnet-and-chat-gpt-agents)
+      - [Configurations to enable Playwright MCP](#configurations-to-enable-playwright-mcp)
+      - [Notes and observations during Playwright MCP agent usage](#notes-and-observations-during-playwright-mcp-agent-usage)
 - [TODOs and Open Issues](#todos-and-open-issues)
 
 ---
 
 ### Overview
 
-> Interactive Graph for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:
+> **View the interactive page hosted on GitHub Pages: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)**
+> - **To view the standalone HTML file in your browser - Dark theme:**
+>   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed-Dark-theme.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed-Dark-theme.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed-Dark-theme.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
+>
+> - **To view the standalone HTML file in your browser - Light theme:**
+ > - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - Download the [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
+>   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
+> - The data table and all export options work directly in the browser.
+>
+> [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
+> 
+> **Integrated Automated end-to-end testing:**
+> - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
+> - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
+> - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
+>
+> [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
+>
+
+[_⬆ Return to the Table of Contents_](#table-of-contents)
+
+---
+
+### Features of the Interactive Graph
+
+**Interactive Graph for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:**
+
 
 - **Scale Toggle Dropdown:**
   - A dropdown to switch between "Linear Scale" (default) and "Log Scale" for the right y-axis (Debt Amount, Per Capita, Population).
   - This affects only the secondary y-axis to handle the wide range of values (e.g., Debt Amount: 35–185B NZD, Per Capita: 8900–34300 NZD, Population: 3.9–5.4M).
+
 
 - **Data Table graph views and dropdowns:**
   - The table is interactive and syncs with the chart’s filters (e.g., PM or Party filters adjust the table rows).
@@ -59,12 +73,15 @@
   - **PM Filter Dropdown:** Filter by "All PMs", "Helen Clark", "John Key", "Bill English", "Jacinda Ardern", "Christopher Luxon".
   - **Population Colour Toggle Dropdown:** Options for "Green (Default)", "Orange", "Purple", "Hide Population".
 
+  
 - **Export Options:** "Export PNG" and "Export CSV" for downloading the graph image or data.
   - Buttons for the "Export Options" to toggle between a data table export (below the chart), exporting all columns (Year, Debt % GDP, Debt Amount, Per Capita, Prime Minister, Ruling Political Party, Population Count).
   - PNG: Downloads a high-resolution image (1200x750) via the "Export PNG" option.
   - CSV: Downloads a file (nz_government_debt_data.csv) with all table data.
 
+
 - **Range Slider:** Zoom into specific year ranges (2002–2025).
+
 
 - **Full hover tooltips:** All columns
   - Year
@@ -75,49 +92,45 @@
   - Party
   - Population in millions
 
+
 - **Party-based colouring:**
   - blue=Labour
   - red=National
   - for debt metrics, population in a separate colour.
 
+
 - **PM change annotations:** Indicating PM change over.
+
 
 - **The chart has four traces:** 
   - 0: % GDP
   - 1: Amount
   - 2: Per Capita
   - 3: Population in millions
- 
----
 
-### Project information
-
-> [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
-> 
-> - View the interactive GitHub Pages-hosted page: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
-> - **To view the standalone HTML file in your browser - Dark theme:**
->   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed-Dark-theme.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-v1-58-5-embed-Dark-theme.html) - *with plotly.js (not - minified) v1.58.5 embedded* → open HTML file in your browser.
->   - [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed-Dark-theme.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
-> - The data table and all export options work directly in the browser.
+[_⬆ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
 ### Playwright automated end-to-end tests
 
-> - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
->   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
->   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
->
-> - Playwright Key Test Coverage *(25 Tests)*:
->   - Visualisation loads and displays correctly.
->   - All dropdowns contain expected filter options.
->   - Selecting filters updates the graph as expected for plotting and page chart content.
->   - Export buttons (PNG, CSV) trigger downloads.
->   - Mode bar and chart controls are present and functional.
->   - Table Data and Data Sources are present and functional.
-> 
-> [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
+- **Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:**
+   - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
+   - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
+
+
+ - Playwright Key Test Coverage *(25 Tests)*:
+   - Visualisation loads and displays correctly.
+   - All dropdowns contain expected filter options.
+   - Selecting filters updates the graph as expected for plotting and page chart content.
+   - Export buttons (PNG, CSV) trigger downloads.
+   - Mode bar and chart controls are present and functional.
+   - Table Data and Data Sources are present and functional.
+ 
+
+[![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
+
+[_⬆ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -125,6 +138,8 @@
 
 1. [Node.js](https://nodejs.org/en/download/) (LTS version recommended)
 2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (Included with Node.js)
+
+[_⬆ Return to the Table of Contents_](#table-of-contents)
 
 ---
 ### Setup
@@ -148,6 +163,8 @@
    ```bash
    npx playwright install
    ``` 
+
+[_⬆ Return to the Table of Contents_](#table-of-contents)
 
 ---
 ### Run tests and generate the test run report to view the test results
@@ -186,23 +203,39 @@
   npx playwright show-report
   ```
 
+[_⬆ Return to the Table of Contents_](#table-of-contents)
+
 ---
 ### CICD Integration
 
 - **GitHub Actions/Workflows:**
-  - Automatically [publishes the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
-  - Automatically [runs Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
-- **Test Reports:** HTML reports are generated for each run and uploaded as workflow artefacts.
-- **Trace & Video:** Retained on failure for debugging.
+  - GitHub Action/Workflow implemented to [publishes the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
+  - GitHub Action/Workflow implemented to [runs Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
+- **Test Reports:** 
+  - HTML reports are generated for each run and uploaded as workflow artefacts.
+- **Test run configurations:**
+  - workers: 10
+  - retries: 3
+  - trace: retain-on-failure 
+  - screenshot: only-on-failure
+  - video: retain-on-failure
+  - cron schedule: 7:30 am NZT (UTC+12)
+
+[_⬆ Return to the Table of Contents_](#table-of-contents)
 
 ---
+
 ### Playwright MCP integration with Claude Sonnet and Chat-GPT agents
 
 > - Usage of [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) to generate a Playwright project that explores your site, write your Tests, and iterate until all tests pass.
 > - Playwright MCP in Agent Mode can autonomously navigate your app, discover key functionality, and generate runnable tests — *in some cases, no manual scripting required.*
 > - [GitHub Copilot](https://github.com/features/copilot) was set to use [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents in Agent mode.
 
-**Configurations to enable Playwright MCP:**
+[_⬆ Return to the Table of Contents_](#table-of-contents)
+
+---
+
+### Configurations to enable Playwright MCP:
 
 1. Configure the MCP Playwright server to run locally inside the  [IDE project folder](.idea/mcp.json) in a file called ```mcp.json``` *([IntelliJ IDEA / Webstorm](https://www.jetbrains.com/webstorm/) was used for this project)*
 
@@ -253,22 +286,33 @@
 - It’s a full cycle where Playwright MCP: explores → generates the tests → executes the tests → reviews the results of the test run. 
 - **For best results:** Iterate and refine the prompts to increase the test coverage and prompt the agent to explore additional areas as well.
 
-**Notes and observations during MCP usage with an agent to complete all tests to run green:**
+[_⬆ Return to the Table of Contents_](#table-of-contents)
+
+---
+
+### Notes and observations during Playwright MCP agent usage
 
 >- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet 3.5](https://www.anthropic.com/claude/sonnet) and [Chat-GPT 4.1](https://chatgpt.com/) as agents using [Playwright MCP](https://github.com/microsoft/playwright-mcp).
->- Manual effort to fix and refactor some of the failing and passing tests was necessary where MCP missed the mark!
+>- Manual effort to fix and refactor some of the failing and passing tests was necessary where the MCP agent missed the mark!
+
+[_⬆ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
 ### TODOs and Open Issues:
 
-**Enhancements to resolve:**
+> The following enhancements and bugs are tracked as issues in the [GitHub Open Issues](https://github.com/badj/NZGovDebtTrends2002-2025/issues)
+
+**Enhancements:**
 
 1. [Add toggle to set page to Dark or Light theme](https://github.com/badj/NZGovDebtTrends2002-2025/issues/7)
-
-**Open Issues to resolve:**
-
 2. [Decrease the test count after analysing tests for duplicated coverage.](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
-3. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
+
+**Bugs:**
+
+1. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
+
+
+[_⬆ Return to the Table of Contents_](#table-of-contents)
 
 ---
