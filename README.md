@@ -230,18 +230,18 @@
 3. Prepare test prompts and add the prompt Markdown to the ```.github``` folder
 
 - For this project, the prompt Markdown file: [1-generate-tests](.github/1-generate-tests.prompt.md) was used to create the initial Playwright tests.
-- For this project, a second prompt Markdown file: [2-fix-failing-tests](.github/2-fix-failing-tests.prompt.md) was uses to continue with fixing the generated Playwright tests further.
+- For this project, a second prompt Markdown file: [2-fix-failing-tests](.github/2-fix-failing-tests.prompt.md) was used to continue fixing and updating generated Playwright tests further.
 
 4. In the IDE, use Agent Mode, add the prompt to the context to create the initial tests and iterate until all tests pass.
 
-- Agent mode uses the Playwright MCP to navigate to the site and use the browser to explore the app like a real user.
-- Prompts prompt/instruct the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
+- Agent mode uses the Playwright MCP to navigate to the site and uses the browser to explore the website like a real user.
+- Prompts instruct the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
 
    ```terminaloutput
    Explore https://badj.github.io/NZGovDebtTrends2002-2025/
    ```
 
-- This generated the bulk of the test, allowing me to tweak it further to my preferences.
+- This generated the bulk of the tests, allowing me to tweak it further to my preferences and expectations.
 - After wrapping up the interactions, the agent summarises its findings and can continue to update and fix the tests if required.
 
 5. Test Generation & Execution:
