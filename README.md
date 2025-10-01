@@ -204,7 +204,7 @@
 
 **Configurations to enable Playwright MCP:**
 
-1. Configure the MCP Playwright server to run locally inside your [IDE project folder](.idea/mcp.json) in a file called ```mcp.json``` *([IntelliJ IDEA / Webstorm](https://www.jetbrains.com/webstorm/) was used for this project)*
+1. Configure the MCP Playwright server to run locally inside the  [IDE project folder](.idea/mcp.json) in a file called ```mcp.json``` *([IntelliJ IDEA / Webstorm](https://www.jetbrains.com/webstorm/) was used for this project)*
 
    ```JSON
    {
@@ -217,9 +217,9 @@
    }
    ```
 
-2. In my project IDE folder [I added a file](.idea/settings.json) called ```settings.json```
+2. In the project IDE folder [an autoApprove settings file waa added](.idea/settings.json) called ```settings.json```
 
-- By adding this code, I didn’t have to click continue each time, allowing the agent to continue on its own.
+- By adding this code, no 'click to continue' is required each time, allowing the agent to continue on its own.
 
   ```JSON
   {
@@ -229,8 +229,8 @@
 
 3. Prepare test prompts and add the prompt Markdown to the ```.github``` folder
 
-- For this project, I created a prompt Markdown file [1-generate-tests](.github/1-generate-tests.prompt.md) to create the initial Playwright tests.
-- For this project, I created a second prompt Markdown file [2-fix-failing-tests](.github/2-fix-failing-tests.prompt.md) to then later on continue to fix the generated Playwright tests further.
+- For this project, the prompt Markdown file: [1-generate-tests](.github/1-generate-tests.prompt.md) was used to create the initial Playwright tests.
+- For this project, a second prompt Markdown file: [2-fix-failing-tests](.github/2-fix-failing-tests.prompt.md) was uses to continue with fixing the generated Playwright tests further.
 
 4. In the IDE, use Agent Mode, add the prompt to the context to create the initial tests and iterate until all tests pass.
 
@@ -242,15 +242,15 @@
    ```
 
 - This generated the bulk of the test, allowing me to tweak it further to my preferences.
-- After wrapping up the interactions, the agent summarises its findings to continue updating and fixing the tests as per your preferences.
+- After wrapping up the interactions, the agent summarises its findings and can continue to update and fix the tests if required.
 
 5. Test Generation & Execution:
   
 > The agent generates a full Playwright test file based on the interactions, and it fixes errors automatically before running each iteration of the tests.
 
 - Once generated, it opens a terminal and runs the tests. When it passes, you can / should inspect the steps taken to confirm accuracy and check for false positives. 
-- It’s a full cycle where it: MCP explores → MCP generates the tests → MCP executes the tests → MCP reviews the results of the test run. 
-- **For best results:** Iterate and refine the prompts to increase the test count and prompt the agent to explore additional areas as well.
+- It’s a full cycle where Playwright MCP: explores → generates the tests → executes the tests → reviews the results of the test run. 
+- **For best results:** Iterate and refine the prompts to increase the test coverage and prompt the agent to explore additional areas as well.
 
 **Notes and observations during MCP usage with an agent to complete all tests to run green:**
 
