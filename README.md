@@ -267,8 +267,7 @@
 
 **Open Issues to resolve:**
 
-2. [Fix duplicated data stats thats presented on chart points](https://github.com/badj/NZGovDebtTrends2002-2025/issues/9)
-3. [Decrease the test count after analysing tests for duplicated coverage.](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
-4. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
+2. [Decrease the test count after analysing tests for duplicated coverage.](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
+3. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
 
 ---
