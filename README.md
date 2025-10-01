@@ -236,6 +236,7 @@
 
 - Agent mode uses the Playwright MCP to navigate to the site and uses the browser to explore the website like a real user.
 - Prompts instruct the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
+- The initial / first prompt used for Playwright MCP to start autonomously: 
 
    ```terminaloutput
    Explore https://badj.github.io/NZGovDebtTrends2002-2025/
