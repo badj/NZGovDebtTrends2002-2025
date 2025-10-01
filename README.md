@@ -179,7 +179,7 @@
   NZGovDebtTrends2002-2025 (main) % npx playwright test --workers=10
   
   Running 25 tests using 10 workers
-  25 passed (10.0s)
+  25 passed (9.2s)
   
   To open last HTML report run:
   
