@@ -202,9 +202,7 @@
         'Ruling Political Party': ['Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'National', 'National', 'National'],
         'Population Count': [3932584, 4000000, 4055944, 4102564, 4166667, 4250000, 4303797, 4383562, 4458599, 4521277, 4568528, 4639175, 4712042, 4773869, 4834123, 4927536, 5000000, 5066079, 5132450, 5182927, 5223881, 5282313, 5334347, 5393586]
     };
-
     const populationMillions = data['Population Count'].map(pop => pop / 1000000);
-
     // Create shared custom data with all information
     const sharedCustomData = data.Year.map((year, i) => [
         data['Prime Minister'][i],
@@ -212,7 +210,6 @@
         data['Population Count'][i],
         populationMillions[i]
     ]);
-
     const traces = [
         {
             x: data.Year,
@@ -279,7 +276,6 @@
             yaxis: 'y2'
         }
     ];
-
     // Function to create CSV data
     function downloadCSV() {
         const csvRows = ['Year,Debt (% of GDP),Debt Amount (NZD billions),Per Capita (NZD),Prime Minister,Ruling Political Party,Population Count'];
@@ -305,7 +301,6 @@
             tableBody.appendChild(row);
         });
     }
-
     // Metrics dropdown buttons
     const metricsButtons = [
         { label: 'All Metrics', method: 'update', args: [{ visible: [true, true, true, true] }, { title: 'New Zealand Government Debt Trends (2002-2025) - All Metrics' }] },
@@ -314,14 +309,12 @@
         { label: 'Per Capita Only', method: 'update', args: [{ visible: [false, false, true, false] }, { title: 'New Zealand Government Debt Trends (2002-2025) - Per Capita Only' }] },
         { label: 'Population Only', method: 'update', args: [{ visible: [false, false, false, true] }, { title: 'New Zealand Government Debt Trends (2002-2025) - Population Only' }] }
     ];
-
     // Party filter dropdown buttons (applies to traces 0-2)
     const partyButtons = [
         { label: 'All Parties', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3]] },
         { label: 'Labour Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] },
         { label: 'National Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] }
     ];
-
     // PM filter dropdown buttons (applies to traces 0-2)
     const pmButtons = [
         { label: 'All PMs', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3]] },
@@ -331,7 +324,6 @@
         { label: 'Jacinda Ardern', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] },
         { label: 'Christopher Luxon', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] }
     ];
-
     // Population color toggle dropdown buttons
     const populationButtons = [
         { label: 'Green (Default)', method: 'restyle', args: [{ 'line.color': 'green', 'marker.color': 'green' }, [3]] },
@@ -339,24 +331,16 @@
         { label: 'Purple', method: 'restyle', args: [{ 'line.color': 'purple', 'marker.color': 'purple' }, [3]] },
         { label: 'Hide Population', method: 'update', args: [{ visible: [true, true, true, false] }, {}] }
     ];
-
-    // Scale toggle dropdown buttons (applies to yaxis2)
-    // const scaleButtons = [ // BORKED!
-    //     { label: 'Linear Scale', method: 'relayout', args: [{ 'yaxis2.type': 'linear' }] },
-    //     { label: 'Log Scale', method: 'relayout', args: [{ 'yaxis2.type': 'log' }] }
-    // ];
-
+   // Scale toggle dropdown buttons (applies to yaxis2)
     const scaleButtons = [
-        { label: 'Linear Scale', method: 'update', args: [{ 'yaxis2.type': 'linear' }, { 'yaxis2.type': 'linear' }] },
-        { label: 'Log Scale', method: 'update', args: [{ 'yaxis2.type': 'log' }, { 'yaxis2.type': 'log' }] }
+        { label: 'Linear Scale', method: 'relayout', args: [{ 'yaxis2.type': 'linear' }] },
+        { label: 'Log Scale', method: 'relayout', args: [{ 'yaxis2.type': 'log' }] }
     ];
-
     // Export options dropdown buttons //
     const exportButtons = [
         { label: 'Export PNG', method: 'animate', args: [null, { frame: { duration: 0 }, transition: { duration: 0 }, mode: 'immediate', fromcurrent: true, layout: { 'toImageButtonOptions': { format: 'png', filename: 'nz_debt_chart', height: 700, width: 1200, scale: 1 } },} ], trigger: () => { Plotly.downloadImage(document.getElementById('debt-chart'), { format: 'png', filename: 'nz_debt_chart', height: 700, width: 1200, scale: 1 }); } },
         { label: 'Export CSV', method: 'animate', args: [null, { frame: { duration: 0 }, transition: { duration: 0 }, mode: 'immediate', fromcurrent: true }], trigger: downloadCSV }
     ];
-
     const layout = {
         title: {
             text: 'New Zealand Government Debt Trends (2002-2025) - All Metrics',
@@ -407,11 +391,9 @@
         ],
         legend: { x: 0.01, y: 0.99, font: { color: '#f0f0f0' } }
     };
-
     Plotly.newPlot('debt-chart', traces, layout).then(() => {
         updateTable();
     });
-
     document.getElementById('export-png-btn').onclick = function() {
         Plotly.downloadImage(document.getElementById('debt-chart'), {
             format: 'png',
@@ -421,9 +403,7 @@
             scale: 1
         });
     };
-
     document.getElementById('export-csv-btn').onclick = downloadCSV;
-
 </script>
 </body>
 </html>

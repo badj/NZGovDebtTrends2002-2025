@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NZ Government Debt Interactive Chart with Table and References</title>
-    <!--    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>-->
-    <!--    <script src="https://cdn.plot.ly/plotly-basic-3.1.0.min.js"></script>-->
-    <!--    <script src="https://cdn.plot.ly/plotly-basic-latest.min.js"></script>-->
     <script>
         /**
          * plotly.js (basic - minified) v1.58.5
@@ -63,25 +60,24 @@
     </style>
 </head>
 <body>
-<!-- Add these above your chart div -->
 <button id="export-png-btn">Export PNG</button>
 <button id="export-csv-btn">Export CSV</button>
 <div id="debt-chart" style="width:100%; height:700px;"></div>
-<table id="data-table" style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">
+<table id="data-table" style="font-family: 'arial';">
     <thead>
     <tr>
-        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Year</th>
-        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Debt (% of GDP)</th>
-        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Debt Amount (NZD billions)</th>
-        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Per Capita (NZD)</th>
-        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Prime Minister</th>
-        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Ruling Political Party</th>
-        <th style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">Population Count</th>
+        <th>Year</th>
+        <th>Debt (% of GDP)</th>
+        <th>Debt Amount (NZD billions)</th>
+        <th>Per Capita (NZD)</th>
+        <th>Prime Minister</th>
+        <th>Ruling Political Party</th>
+        <th>Population Count</th>
     </tr>
     </thead>
     <tbody id="table-body"></tbody>
 </table>
-<div id="references" style="font-family: 'Open Sans', 'verdana', 'arial', 'sans-serif';">
+<div id="references" style="font-family: 'arial';">
     <h3>Data Sources</h3>
     <ul>
         <li><a href="https://www.stats.govt.nz/topics/population" target="_blank">Statistics New Zealand - Population Data</a>: Population counts for New Zealand from 2002 to 2025.</li>
@@ -129,10 +125,15 @@
         'Ruling Political Party': ['Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'National', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'Labour', 'National', 'National', 'National'],
         'Population Count': [3932584, 4000000, 4055944, 4102564, 4166667, 4250000, 4303797, 4383562, 4458599, 4521277, 4568528, 4639175, 4712042, 4773869, 4834123, 4927536, 5000000, 5066079, 5132450, 5182927, 5223881, 5282313, 5334347, 5393586]
     };
-
     // Convert Population Count to millions for better scaling
     const populationMillions = data['Population Count'].map(pop => pop / 1000000);
-
+    // Create shared custom data with all information
+    const sharedCustomData = data.Year.map((year, i) => [
+        data['Prime Minister'][i],
+        data['Ruling Political Party'][i],
+        data['Population Count'][i],
+        populationMillions[i]
+    ]);
     // Base traces (one for each metric)
     const traces = [
         {
@@ -143,15 +144,12 @@
             type: 'scatter',
             line: { width: 2 },
             marker: { size: 6 },
-            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            customdata: sharedCustomData,
             hovertemplate: '<b>Year: %{x}</b><br>' +
-                'Debt (% GDP): %{y:.1f}%<br>' +
-                'Amount: NZD %{customdata[0]}B<br>' +
-                'Per Capita: NZD %{customdata[1]}<br>' +
-                'PM: %{customdata[2]}<br>' +
-                'Party: %{customdata[3]}<br>' +
-                'Population: %{customdata[4]}<br>' +
-                'Population (M): %{customdata[6]:.2f}M<extra></extra>',
+                '<b>Debt (% GDP): %{y:.1f}%</b><br>' +
+                'PM: %{customdata[0]}<br>' +
+                'Party: %{customdata[1]}<br>' +
+                'Population: %{customdata[2]:,}<extra></extra>',
             yaxis: 'y'
         },
         {
@@ -162,15 +160,12 @@
             type: 'scatter',
             line: { width: 2, dash: 'dash' },
             marker: { size: 6 },
-            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            customdata: sharedCustomData,
             hovertemplate: '<b>Year: %{x}</b><br>' +
-                'Debt (% GDP): %{customdata[5]:.1f}%<br>' +
-                'Amount: NZD %{y}B<br>' +
-                'Per Capita: NZD %{customdata[1]}<br>' +
-                'PM: %{customdata[2]}<br>' +
-                'Party: %{customdata[3]}<br>' +
-                'Population: %{customdata[4]}<br>' +
-                'Population (M): %{customdata[6]:.2f}M<extra></extra>',
+                '<b>Amount: NZD $%{y}B</b><br>' +
+                'PM: %{customdata[0]}<br>' +
+                'Party: %{customdata[1]}<br>' +
+                'Population: %{customdata[2]:,}<extra></extra>',
             yaxis: 'y2'
         },
         {
@@ -181,15 +176,12 @@
             type: 'scatter',
             line: { width: 2, dash: 'dot' },
             marker: { size: 6 },
-            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            customdata: sharedCustomData,
             hovertemplate: '<b>Year: %{x}</b><br>' +
-                'Debt (% GDP): %{customdata[5]:.1f}%<br>' +
-                'Amount: NZD %{customdata[0]}B<br>' +
-                'Per Capita: NZD %{y}<br>' +
-                'PM: %{customdata[2]}<br>' +
-                'Party: %{customdata[3]}<br>' +
-                'Population: %{customdata[4]}<br>' +
-                'Population (M): %{customdata[6]:.2f}M<extra></extra>',
+                '<b>Per Capita: NZD $%{y:,}</b><br>' +
+                'PM: %{customdata[0]}<br>' +
+                'Party: %{customdata[1]}<br>' +
+                'Population: %{customdata[2]:,}<extra></extra>',
             yaxis: 'y2'
         },
         {
@@ -200,19 +192,15 @@
             type: 'scatter',
             line: { color: 'green', width: 2 },
             marker: { size: 6, color: 'green' },
-            customdata: data.Year.map((year, i) => [data['Debt Amount (NZD billions)'][i], data['Per Capita (NZD)'][i], data['Prime Minister'][i], data['Ruling Political Party'][i], data['Population Count'][i], data['Debt (% of GDP)'][i], populationMillions[i]]),
+            customdata: sharedCustomData,
             hovertemplate: '<b>Year: %{x}</b><br>' +
-                'Debt (% GDP): %{customdata[5]:.1f}%<br>' +
-                'Amount: NZD %{customdata[0]}B<br>' +
-                'Per Capita: NZD %{customdata[1]}<br>' +
-                'PM: %{customdata[2]}<br>' +
-                'Party: %{customdata[3]}<br>' +
-                'Population: %{customdata[4]}<br>' +
-                'Population (M): %{y:.2f}M<extra></extra>',
+                '<b>Population: %{y:.2f}M</b><br>' +
+                'Exact: %{customdata[2]:,}<br>' +
+                'PM: %{customdata[0]}<br>' +
+                'Party: %{customdata[1]}<extra></extra>',
             yaxis: 'y2'
         }
     ];
-
     // Function to create CSV data
     function downloadCSV() {
         const csvRows = ['Year,Debt (% of GDP),Debt Amount (NZD billions),Per Capita (NZD),Prime Minister,Ruling Political Party,Population Count'];
@@ -228,29 +216,16 @@
         link.click();
         document.body.removeChild(link);
     }
-
     // Function to update data table
     function updateTable() {
         const tableBody = document.getElementById('table-body');
         tableBody.innerHTML = '';
-        const pmFilter = document.querySelector('.updatemenu-item-active[data-label*="PMs"]')?.getAttribute('data-label') || 'All PMs';
-        const partyFilter = document.querySelector('.updatemenu-item-active[data-label*="Parties"]')?.getAttribute('data-label') || 'All Parties';
-        let filteredIndices = data.Year.map((_, i) => i);
-
-        if (pmFilter !== 'All PMs') {
-            filteredIndices = filteredIndices.filter(i => data['Prime Minister'][i] === pmFilter);
-        }
-        if (partyFilter !== 'All Parties') {
-            filteredIndices = filteredIndices.filter(i => data['Ruling Political Party'][i] === (partyFilter === 'Labour Only' ? 'Labour' : 'National'));
-        }
-
-        filteredIndices.forEach(i => {
+        data.Year.forEach((year, i) => {
             const row = document.createElement('tr');
-            row.innerHTML = `<td>${data.Year[i]}</td><td>${data['Debt (% of GDP)'][i]}</td><td>${data['Debt Amount (NZD billions)'][i]}</td><td>${data['Per Capita (NZD)'][i]}</td><td>${data['Prime Minister'][i]}</td><td>${data['Ruling Political Party'][i]}</td><td>${data['Population Count'][i]}</td>`;
+            row.innerHTML = `<td>${year}</td><td>${data['Debt (% of GDP)'][i]}</td><td>${data['Debt Amount (NZD billions)'][i]}</td><td>${data['Per Capita (NZD)'][i]}</td><td>${data['Prime Minister'][i]}</td><td>${data['Ruling Political Party'][i]}</td><td>${data['Population Count'][i]}</td>`;
             tableBody.appendChild(row);
         });
     }
-
     // Metrics dropdown buttons
     const metricsButtons = [
         { label: 'All Metrics', method: 'update', args: [{ visible: [true, true, true, true] }, { title: 'New Zealand Government Debt Trends (2002-2025) - All Metrics' }] },
@@ -259,60 +234,60 @@
         { label: 'Per Capita Only', method: 'update', args: [{ visible: [false, false, true, false] }, { title: 'New Zealand Government Debt Trends (2002-2025) - Per Capita Only' }] },
         { label: 'Population Only', method: 'update', args: [{ visible: [false, false, false, true] }, { title: 'New Zealand Government Debt Trends (2002-2025) - Population Only' }] }
     ];
-
     // Party filter dropdown buttons (applies to traces 0-2)
     const partyButtons = [
-        { label: 'All Parties', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
-        { label: 'Labour Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
-        { label: 'National Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] }
+        { label: 'All Parties', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3]] },
+        { label: 'Labour Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] },
+        { label: 'National Only', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), data['Ruling Political Party'].map(p => p === 'National' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] }
     ];
-
     // PM filter dropdown buttons (applies to traces 0-2)
     const pmButtons = [
-        { label: 'All PMs', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
-        { label: 'Helen Clark', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
-        { label: 'John Key', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
-        { label: 'Bill English', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
-        { label: 'Jacinda Ardern', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] },
-        { label: 'Christopher Luxon', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3], { execute: true, callback: updateTable }] }
+        { label: 'All PMs', method: 'restyle', args: [{ 'line.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'], 'marker.color': [data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), data['Ruling Political Party'].map(p => p === 'Labour' ? 'blue' : 'red'), 'green'] }, [0,1,2,3]] },
+        { label: 'Helen Clark', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Helen Clark' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] },
+        { label: 'John Key', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'John Key' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] },
+        { label: 'Bill English', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Bill English' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] },
+        { label: 'Jacinda Ardern', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Jacinda Ardern' ? 'blue' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] },
+        { label: 'Christopher Luxon', method: 'restyle', args: [{ 'line.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'], 'marker.color': [data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), data['Prime Minister'].map(p => p === 'Christopher Luxon' ? 'red' : 'rgba(0,0,0,0)'), 'green'] }, [0,1,2,3]] }
     ];
-
     // Population color toggle dropdown buttons
     const populationButtons = [
-        { label: 'Green (Default)', method: 'restyle', args: [{ 'line.color[3]': 'green', 'marker.color[3]': 'green' }, [3]] },
-        { label: 'Orange', method: 'restyle', args: [{ 'line.color[3]': 'orange', 'marker.color[3]': 'orange' }, [3]] },
-        { label: 'Purple', method: 'restyle', args: [{ 'line.color[3]': 'purple', 'marker.color[3]': 'purple' }, [3]] },
+        { label: 'Green (Default)', method: 'restyle', args: [{ 'line.color': 'green', 'marker.color': 'green' }, [3]] },
+        { label: 'Orange', method: 'restyle', args: [{ 'line.color': 'orange', 'marker.color': 'orange' }, [3]] },
+        { label: 'Purple', method: 'restyle', args: [{ 'line.color': 'purple', 'marker.color': 'purple' }, [3]] },
         { label: 'Hide Population', method: 'update', args: [{ visible: [true, true, true, false] }, {}] }
     ];
-
     // Scale toggle dropdown buttons (applies to yaxis2)
     const scaleButtons = [
-        { label: 'Linear Scale', method: 'update', args: [{ 'yaxis2.type': 'linear' }, { 'yaxis2.type': 'linear' }] },
-        { label: 'Log Scale', method: 'update', args: [{ 'yaxis2.type': 'log' }, { 'yaxis2.type': 'log' }] }
+        { label: 'Linear Scale', method: 'relayout', args: [{ 'yaxis2.type': 'linear' }] },
+        { label: 'Log Scale', method: 'relayout', args: [{ 'yaxis2.type': 'log' }] }
     ];
-
     // Export options dropdown buttons //
-    // Ignored/Disabled to fix download issues to use download buttons instead loaded top left of the page - the download dropdown has been disabled!
     const exportButtons = [
         { label: 'Export PNG', method: 'animate', args: [null, { frame: { duration: 0 }, transition: { duration: 0 }, mode: 'immediate', fromcurrent: true, layout: { 'toImageButtonOptions': { format: 'png', filename: 'nz_debt_chart', height: 700, width: 1200, scale: 1 } },} ], trigger: () => { Plotly.downloadImage(document.getElementById('debt-chart'), { format: 'png', filename: 'nz_debt_chart', height: 700, width: 1200, scale: 1 }); } },
         { label: 'Export CSV', method: 'animate', args: [null, { frame: { duration: 0 }, transition: { duration: 0 }, mode: 'immediate', fromcurrent: true }], trigger: downloadCSV }
     ];
-
     const layout = {
         title: {
-            text: '<b>[ New Zealand Government Debt Trends (2002-2025) - All Metrics ]</b>',
-            y: 0.05, // y is a fraction of the plot height (0 = top, 1 = bottom)
-            x: 0.5,  // centers the title horizontally
+            text: 'New Zealand Government Debt Trends (2002-2025) - All Metrics',
+            y: 0.997, // y is a fraction of the plot height (0 = top, 1 = bottom)
+            x: 0.5, // centers the title horizontally
             xanchor: 'center',
-            yanchor: 'top'
+            yanchor: 'top',
         },
         xaxis: {
             title: 'Year',
-            rangeslider: { visible: true }
+            rangeslider: { visible: true },
         },
-        yaxis: { title: 'Debt (% of GDP)', side: 'left' },
-        yaxis2: { title: 'Debt Amount (NZD billions) / Per Capita (NZD) / Population (M)', side: 'right', overlaying: 'y', type: 'linear' },
-        hovermode: 'x unified',
+        yaxis: {
+            title: 'Debt (% of GDP)',
+            side: 'left',
+        },
+        yaxis2: {
+            title: 'Debt Amount (NZD billions) / Per Capita (NZD) / Population (M)',
+            side: 'right',
+            overlaying: 'y',
+            type: 'linear',
+        },
         annotations: [
             { x: 2008, y: 36.0, xref: 'x', yref: 'y', text: 'John Key', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: 'white' },
             { x: 2016, y: 34.5, xref: 'x', yref: 'y', text: 'Bill English', showarrow: true, arrowhead: 2, ax: 20, ay: -30, bgcolor: 'white' },
@@ -326,16 +301,12 @@
             { buttons: pmButtons, direction: 'down', showactive: true, x: 0.41, xanchor: 'left', y: 1.15, yanchor: 'top' },
             { buttons: populationButtons, direction: 'down', showactive: true, x: 0.61, xanchor: 'left', y: 1.15, yanchor: 'top' },
             { buttons: scaleButtons, direction: 'down', showactive: true, x: 0.81, xanchor: 'left', y: 1.15, yanchor: 'top' },
-            // Ignored/Disabled to fix download issues to use download buttons instead loaded top left of the page - the download dropdown has been disabled!
-            // { buttons: exportButtons, direction: 'down', showactive: true, x: 0.95, xanchor: 'left', y: 1.15, yanchor: 'top' }
         ],
         legend: { x: 0.01, y: 0.99 }
     };
-
     Plotly.newPlot('debt-chart', traces, layout).then(() => {
         updateTable(); // Initialize table with all data
     });
-
     document.getElementById('export-png-btn').onclick = function() {
         Plotly.downloadImage(document.getElementById('debt-chart'), {
             format: 'png',
@@ -345,7 +316,6 @@
             scale: 1
         });
     };
-
     document.getElementById('export-csv-btn').onclick = downloadCSV;
 </script>
 </body>
