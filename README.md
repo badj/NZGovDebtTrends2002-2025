@@ -52,7 +52,7 @@
 > [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
 >
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -108,7 +108,7 @@
   - 2: Per Capita
   - 3: Population in millions
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -130,7 +130,7 @@
 
 [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -139,7 +139,7 @@
 1. [Node.js](https://nodejs.org/en/download/) (LTS version recommended)
 2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) (Included with Node.js)
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 ### Setup
@@ -164,7 +164,7 @@
    npx playwright install
    ``` 
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 ### Run tests and generate the test run report to view the test results
@@ -203,7 +203,7 @@
   npx playwright show-report
   ```
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 ### CICD Integration
@@ -221,7 +221,7 @@
   - video: retain-on-failure
   - cron schedule: 7:30 am NZT (UTC+12)
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -231,7 +231,7 @@
 > - Playwright MCP in Agent Mode can autonomously navigate your app, discover key functionality, and generate runnable tests — *in some cases, no manual scripting required.*
 > - [GitHub Copilot](https://github.com/features/copilot) was set to use [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents in Agent mode.
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -286,7 +286,7 @@
 - It’s a full cycle where Playwright MCP: explores → generates the tests → executes the tests → reviews the results of the test run. 
 - **For best results:** Iterate and refine the prompts to increase the test coverage and prompt the agent to explore additional areas as well.
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -295,7 +295,7 @@
 >- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet 3.5](https://www.anthropic.com/claude/sonnet) and [Chat-GPT 4.1](https://chatgpt.com/) as agents using [Playwright MCP](https://github.com/microsoft/playwright-mcp).
 >- Manual effort to fix and refactor some of the failing and passing tests was necessary where the MCP agent missed the mark!
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
 
@@ -313,6 +313,6 @@
 1. [Enable WebKit and Firefox cross-browser runners when 4 failing tests are fixed for the specific browsers encountering failures](https://github.com/badj/NZGovDebtTrends2002-2025/issues/1)
 
 
-[_⬆ Return to the Table of Contents_](#table-of-contents)
+[_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
