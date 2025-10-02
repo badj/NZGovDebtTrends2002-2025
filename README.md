@@ -147,8 +147,8 @@
 ### Setup
 
 1. Clone or Download
-    - Clone this repository: `git clone https://github.com/badj/NZGovDebtTrends2002-2025.git`
-    - Alternatively, download the ZIP file and extract it.
+- Clone this repository: `git clone https://github.com/badj/NZGovDebtTrends2002-2025.git`
+- Alternatively, download the ZIP file and extract it.
 2. Navigate to Project Directory:
    ```bash
    cd NZGovDebtTrends2002-2025
