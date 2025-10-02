@@ -1,6 +1,8 @@
 # New Zealand Government Debt Trends (2002-2025) - Interactive Graph
 
-> New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) to plot the graphs from historical static data from various sources *(refer to data sources provided below the data table)*. End-to-end test automation coverage has been implemented for the page using [Playwright Test Framework](https://playwright.dev/) with initial tests generated / explored using [MCP(Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro).
+> New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) to plot the graphs from historical static data from various sources *(refer to data sources provided below the data table)*.
+>
+> End-to-end test automation coverage has been implemented for the page using [Playwright Test Framework](https://playwright.dev/) with initial tests generated / explored using [MCP(Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro).
 > 
 > View the interactive page hosted on GitHub Pages: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
 > 
