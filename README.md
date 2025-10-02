@@ -20,10 +20,10 @@
     - [Pre requisites](#pre-requisites)
     - [Setup](#setup)
     - [Run tests and generate the test run report to view test results](#run-tests-and-generate-the-test-run-report-to-view-the-test-results)
-    - [CICD Integration](#cicd-integration)
     - [Playwright MCP integration with Claude Sonnet and Chat-GPT agents](#playwright-mcp-integration-with-claude-sonnet-and-chat-gpt-agents)
       - [Configurations to enable Playwright MCP](#configurations-to-enable-playwright-mcp)
       - [Notes and observations during Playwright MCP agent usage](#notes-and-observations-during-playwright-mcp-agent-usage)
+- [CICD Integration](#cicd-integration)
 - [TODOs and Open Issues](#todos-and-open-issues)
 
 ---
@@ -58,7 +58,7 @@
 
 ### Features of the Interactive Graph
 
-**Interactive Graph for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features:**
+> Interactive Graph for New Zealand Government Debt Trends from 2002-2025 with metrics-supported features
 
 
 - **Scale Toggle Dropdown:**
@@ -169,7 +169,7 @@
 ---
 ### Run tests and generate the test run report to view the test results
 
-**Test run with Playwright HTML report generation**
+> Test run with Playwright HTML report generation
 
 1. Execute the test (headless)
    ```bash
@@ -206,24 +206,6 @@
 [_⇡ Return to the Table of Contents_](#table-of-contents)
 
 ---
-### CICD Integration
-
-- **GitHub Actions/Workflows:**
-  - GitHub Action/Workflow implemented to [publishes the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
-  - GitHub Action/Workflow implemented to [runs Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
-- **Test Reports:** 
-  - HTML reports are generated for each run and uploaded as workflow artefacts.
-- **Test run configurations:**
-  - workers: 10
-  - retries: 3
-  - trace: retain-on-failure 
-  - screenshot: only-on-failure
-  - video: retain-on-failure
-  - cron schedule: 7:30 am NZT (UTC+12)
-
-[_⇡ Return to the Table of Contents_](#table-of-contents)
-
----
 
 ### Playwright MCP integration with Claude Sonnet and Chat-GPT agents
 
@@ -235,7 +217,7 @@
 
 ---
 
-### Configurations to enable Playwright MCP:
+### Configurations to enable Playwright MCP
 
 1. Configure the MCP Playwright server to run locally inside the  [IDE project folder](.idea/mcp.json) in a file called ```mcp.json``` *([IntelliJ IDEA / Webstorm](https://www.jetbrains.com/webstorm/) was used for this project)*
 
@@ -299,7 +281,26 @@
 
 ---
 
-### TODOs and Open Issues:
+### CICD Integration
+
+- **GitHub Actions/Workflows:**
+    - GitHub Action/Workflow implemented to [publishes the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
+    - GitHub Action/Workflow implemented to [runs Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
+- **Test Reports:**
+    - HTML reports are generated for each run and uploaded as workflow artefacts.
+- **Test run configurations:**
+    - workers: 10
+    - retries: 3
+    - trace: retain-on-failure
+    - screenshot: only-on-failure
+    - video: retain-on-failure
+    - cron schedule: 7:30 am NZT (UTC+12)
+
+[_⇡ Return to the Table of Contents_](#table-of-contents)
+
+---
+
+### TODOs and Open Issues
 
 > The following enhancements and bugs are tracked as issues in the [GitHub Open Issues](https://github.com/badj/NZGovDebtTrends2002-2025/issues)
 
