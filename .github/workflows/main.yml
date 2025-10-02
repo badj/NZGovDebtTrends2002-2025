@@ -1,4 +1,4 @@
-name: E2E tests Playwright - NZGovDebtTrends-2002-2025 
+name: E2E Playwright Tests - NZGovDebtTrends 
 on:
   push:
     branches: [ main, master ]
