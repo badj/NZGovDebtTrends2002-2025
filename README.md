@@ -284,7 +284,7 @@
 ### Notes and observations during Playwright MCP agent usage
 
 >- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet 3.5](https://www.anthropic.com/claude/sonnet) and [Chat-GPT 4.1](https://chatgpt.com/) as agents using [Playwright MCP](https://github.com/microsoft/playwright-mcp).
->- Manual effort to fix and refactor some of the failing and passing tests was necessary where the MCP agent missed the mark!
+>- Nurturing / Manual effort to fix and refactor some of the failing and passing tests was necessary where the MCP agent missed the mark!
 
 [_⇡ Return to the Table of Contents_](#table-of-contents)
 
