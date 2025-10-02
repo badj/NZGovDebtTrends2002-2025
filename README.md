@@ -32,6 +32,8 @@
 
 ### Overview
 
+[![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
+
 > **View the interactive page hosted on GitHub Pages: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)**
 > - **To view the standalone HTML file in your browser - Dark theme:**
 >   - Download the [NZ_Governments Debt_Chart HTML file - Dark theme](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-plotlyJS-basic-minified-embed-Dark-theme.html) - *with plotly.js (basic - minified) v1.58.5 embedded* → open HTML file in your browser.
@@ -44,15 +46,16 @@
 >   - [NZ_Governments Debt_Chart HTML file](https://github.com/badj/NZGovDebtTrends2002-2025/blob/main/NZ_DEBT_CHART-IT-without-plotlyJS-embed.html) - *without plotly.js embedded: requires library download from CDN using the latest plotly.js* → Open in IDE and download the latest plotly.js from CDN.
 > - The data table and all export options work directly in the browser.
 >
-> [![pages-build-deployment](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment)
-> 
+
+---
+
 > **Integrated Automated end-to-end testing:**
-> - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
-> - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
-> - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 >
 > [![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
 >
+> - Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:
+> - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
+> - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 
 [_⇡ Return to the Table of Contents_](#table-of-contents)
 
@@ -116,6 +119,8 @@
 
 ### Playwright automated end-to-end tests
 
+[![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
+
 - **Automated end-to-end testing has been integrated for the interactive visualisation using [Playwright](https://playwright.dev/) as the test framework:**
    - The end-to-end tests verify the page and graph features, including dropdown filters, chart rendering, export options, and interactive controls.
    - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
@@ -128,9 +133,6 @@
    - Export buttons (PNG, CSV) trigger downloads.
    - Mode bar and chart controls are present and functional.
    - Table Data and Data Sources are present and functional.
- 
-
-[![Playwright Tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml/badge.svg)](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml)
 
 [_⇡ Return to the Table of Contents_](#table-of-contents)
 
