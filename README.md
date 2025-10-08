@@ -294,7 +294,7 @@
 
 - **GitHub Actions/Workflows:**
     - GitHub Action/Workflow implemented to [publishes the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
-    - GitHub Action/Workflow implemented to [runs Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
+    - GitHub Action/Workflow implemented to [run Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
 - **Test Reports:**
     - HTML reports are generated for each run and uploaded as workflow artefacts.
 - **Test run configurations:**
