@@ -315,7 +315,8 @@
 
 **Enhancements:**
 
-1. [Add toggle to set page to Dark or Light theme](https://github.com/badj/NZGovDebtTrends2002-2025/issues/7)
+1. [Bump version for playwright to the latest version 1.56.0](https://github.com/badj/NZGovDebtTrends2002-2025/issues/12)
+2. [Add toggle to set page to Dark or Light theme](https://github.com/badj/NZGovDebtTrends2002-2025/issues/7)
 2. [Decrease the test count after analysing tests for duplicated coverage.](https://github.com/badj/NZGovDebtTrends2002-2025/issues/2)
 
 **Bugs:**
