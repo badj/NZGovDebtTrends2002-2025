@@ -2,7 +2,7 @@
 
 > New Zealand Government Debt Trends (2002-2025) with Metrics using [Plotly Open Source Graphing JS Library (Plotly Website)](https://plotly.com/graphing-libraries/) / [Plotly Open Source Graphing JS Library (Plotly GitHub)](https://github.com/plotly/plotly.js) to plot the graphs from historical static data from various sources *(refer to data sources provided below the data table)*.
 >
-> End-to-end test automation coverage has been implemented for the page using [Playwright Test Framework](https://playwright.dev/) with initial tests generated / explored using [MCP(Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro).
+> End-to-end test automation coverage has been implemented for the page using [Playwright Test Framework](https://playwright.dev/) with initial tests generated/explored using [MCP(Model Context Protocol)](https://modelcontextprotocol.io/docs/getting-started/intro).
 > 
 > View the interactive page hosted on GitHub Pages: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
 > 
@@ -207,7 +207,7 @@
   Running 25 tests using 10 workers
   25 passed (9.2s)
   
-  To open last HTML report run:
+  To open the HTML report, run:
   
   npx playwright show-report
   ```
@@ -260,7 +260,7 @@
 
 - Agent mode uses the Playwright MCP to navigate to the site and uses the browser to explore the website like a real user.
 - Prompts instruct the agent to navigate, discover functionality, and then generate tests automatically based on its interactions.
-- The initial / first prompt used for Playwright MCP to start autonomously: 
+- The initial/first prompt used for Playwright MCP to start autonomously: 
 
    ```terminaloutput
    Explore https://badj.github.io/NZGovDebtTrends2002-2025/
@@ -284,7 +284,7 @@
 ### Notes and observations during Playwright MCP agent usage
 
 >- Approximately 70% of the tests were created and fixed smoothly with [GitHub Copilot](https://github.com/features/copilot) set to use [Claude Sonnet 3.5](https://www.anthropic.com/claude/sonnet) and [Chat-GPT 4.1](https://chatgpt.com/) as agents using [Playwright MCP](https://github.com/microsoft/playwright-mcp).
->- Nurturing / Manual effort to fix and refactor some of the failing and passing tests was necessary where the MCP agent missed the mark!
+>- Nurturing/Manual effort to fix and refactor some of the failing and passing tests was necessary, when the MCP agent missed the mark!
 
 [_⇡ Return to the Table of Contents_](#table-of-contents)
 
@@ -293,7 +293,7 @@
 ### CICD Integration
 
 - **GitHub Actions/Workflows:**
-    - GitHub Action/Workflow implemented to [publishes the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
+    - GitHub Action/Workflow implemented to [publish the GitHub Page](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/pages/pages-build-deployment) on every commit.
     - GitHub Action/Workflow implemented to [run Playwright tests](https://github.com/badj/NZGovDebtTrends2002-2025/actions/workflows/main.yml) on every commit and scheduled intervals.
 - **Test Reports:**
     - HTML reports are generated for each run and uploaded as workflow artefacts.
