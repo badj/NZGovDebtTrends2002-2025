@@ -94,7 +94,7 @@
   - Amount
   - Per Capita
   - PM
-  - Party
+  - Political Party
   - Population in millions
 
 
