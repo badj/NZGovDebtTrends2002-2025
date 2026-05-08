@@ -99,15 +99,32 @@ test.describe('NZ Government Debt Trends Website - features and functionality te
         await expect(gridLayer).toBeVisible();
     });
 
-    test('Data table and Data References are displayed', async ({ page }) => {
+    test('Data table with data is displayed', async ({ page }) => {
         // Verify the table is present and has the basic structure
         const table = page.locator('table');
         await expect(table).toBeVisible();
-        // Check for a specific data source
-        await expect(page.getByRole('link', { name: 'Statistics New Zealand -' })).toBeVisible();
         // Verify table headers
-        const yearHeader = page.getByRole('cell', { name: 'Year' }).first();
-        await expect(yearHeader).toBeVisible();
+        await expect(page.getByRole('columnheader', { name: 'Year' })).toBeVisible();
+        await expect(page.getByRole('columnheader', { name: 'Debt (% of GDP)' })).toBeVisible();
+        await expect(page.getByRole('columnheader', { name: 'Debt Amount (NZD billions)' })).toBeVisible();
+        await expect(page.getByRole('columnheader', { name: 'Per Capita (NZD)' })).toBeVisible();
+        await expect(page.getByRole('columnheader', { name: 'Prime Minister' })).toBeVisible();
+        await expect(page.getByRole('columnheader', { name: 'Ruling Political Party' })).toBeVisible();
+        await expect(page.getByRole('columnheader', { name: 'Population Count' })).toBeVisible();
+        // Spot check table data
+        await expect(page.getByRole('cell', { name: '2002' })).toBeVisible();
+        await expect(page.getByRole('cell', { name: '3932584' })).toBeVisible();
+        await expect(page.getByRole('cell', { name: '2025' })).toBeVisible();
+        await expect(page.getByRole('cell', { name: '5393586' })).toBeVisible();
+    });
+
+    test('Data References are displayed with working links', async ({ page }) => {
+        // Check for a specific data source
+        await expect(page.getByRole('heading', { name: 'Data Sources' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Statistics New Zealand -' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Statistics New Zealand -' })).toHaveAttribute('href', 'https://www.stats.govt.nz/topics/population');
+        await expect(page.getByRole('link', { name: 'IMF Executive Board Concludes 2025 Article IV Consultation with New Zealand' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'IMF Executive Board Concludes 2025 Article IV Consultation with New Zealand' })).toHaveAttribute('href', 'https://www.imf.org/en/News/Articles/2025/05/23/pr25159-imf-executive-board-concludes-2025-article-iv-consultation-with-new-zealand');
     });
 
     test('All plot controls are loaded and available for use', async ({ page, plotContainer }) => {

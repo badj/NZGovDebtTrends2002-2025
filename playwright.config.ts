@@ -54,7 +54,22 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-  /* TODO: Enable browsers when the 3 failing tests are fixed for these browsers and check that ALL test pass on all browsers! */
+    /* TODO: Used to test issue where element was not found - element was below the fold - keeping for future debugging reference! */
+
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     // Remove the ...devices['Desktop Chrome'] spread to avoid conflicts
+    //     headless: false,
+    //     viewport: null,
+    //     deviceScaleFactor: undefined, // Required when viewport is null
+    //     launchOptions: {
+    //       args: ['--start-maximized'],
+    //     },
+    //   },
+    // },
+
+    /* TODO: Enable browsers when the 3 failing tests are fixed for these browsers and check that ALL test pass on all browsers! */
 
     // {
     //   name: 'firefox',

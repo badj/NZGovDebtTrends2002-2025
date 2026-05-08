@@ -126,13 +126,14 @@
    - [Playwright MCP (Model Context Protocol)](https://github.com/microsoft/playwright-mcp) was used with [GitHub Copilot](https://github.com/features/copilot), [Claude Sonnet](https://www.anthropic.com/claude/sonnet) and [Chat-GPT](https://chatgpt.com/) as agents for the prompts to [generate tests](.github/1-generate-tests.prompt.md) and for [fixing failing tests](.github/2-fix-failing-tests.prompt.md).
 
 
- - **Playwright Key Test Coverage** *(25 Tests)*:
+ - **Playwright Key Test Coverage** *(26 Tests)*:
    - Visualisation loads and displays correctly.
    - All dropdowns contain expected filter options.
    - Selecting filters updates the graph as expected for plotting and page chart content.
    - Export buttons (PNG, CSV) trigger downloads.
    - Mode bar and chart controls are present and functional.
-   - Table Data and Data Sources are present and functional.
+   - Data table with data is displayed.
+   - Data Sources are present and functional.
 
 [_⇡ Return to the Table of Contents_](#table-of-contents)
 
