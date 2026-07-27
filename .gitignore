@@ -1,4 +1,15 @@
 
+# IDE
+.idea/
+
+# Environment and credentials
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+
 # Playwright
 node_modules/
 /test-results/
