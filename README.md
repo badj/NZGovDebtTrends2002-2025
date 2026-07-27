@@ -6,7 +6,7 @@
 > 
 > View the interactive page hosted on GitHub Pages: [NZ Governments Debt Trends 2002-2025](https://badj.github.io/NZGovDebtTrends2002-2025/)
 > 
-> **Demo samples of the interactive graph for Dark and Light themes:**
+> **Demo samples of the interactive graph for Dark & Light themes:**
 > 
 > ![chart-demo.gif](Images/chart-demo-dark.gif)
 >
